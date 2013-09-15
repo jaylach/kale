@@ -1,0 +1,23 @@
+{
+  "name": "javelin",
+  "version": "0.1.0",
+  "description": "Javascript API View Expression Language",
+  "main": "index.js",
+  "dependencies": {
+    "jison": "~0.4.13",
+    "lex": "~1.7.4"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "repository": "",
+  "keywords": [
+    "api",
+    "view",
+    "template",
+    "json",
+    "xml",
+    "rest"
+  ],
+  "author": "Jason LaChapelle",
+  "license": "MIT"
+}
