@@ -1,7 +1,7 @@
 Javascript API View Expression Language
 
 license
-=======
+-------
 The MIT License (MIT)
 
 Copyright (c) 2013 Jason LaChapelle
