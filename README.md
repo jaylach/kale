@@ -1,4 +1,6 @@
-Javascript API View Expression Language
+A view engine for your RESTful APIs. 
+
+TODO: Add a bunch more information here. Will do once the project gets into a working state.
 
 license
 -------
