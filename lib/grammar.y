@@ -1,21 +1,34 @@
 %start Template
 
-%left DOT
 %left MemberExpression
-%left PropertySetter
-%right IdentifierName
+%left PropertyExpression
+%left DOT
 
 %%
 
 Template
   : 
+      {
+        $$ = new yy.Template([]);
+        return $$;
+      }
   | TemplateElements EOF 
-      { return ['Template', $1]; }
+      { 
+        $$ = new yy.Template($1);
+        return $$;
+      }
   ;
 
 TemplateElements
   : TemplateElement
+      { 
+        $$ = [ $1 ]; 
+      }
   | TemplateElements TemplateElement
+      {
+        $1.push($2);
+        $$ = $1;
+      }
   ;
 
 TemplateElement
@@ -29,11 +42,20 @@ Block
 
 TemplateBlock
   : OPENBRACE CLOSEBRACE
+      {
+        $$ = [];
+      }
   | OPENBRACE TemplateElements CLOSEBRACE
+      {
+        $$ = $2;
+      }
   ;
 
 ScriptBlock
   : SCRIPTBLOCK
+      { 
+        $$ = new yy.Node('SCRIPT', $1);
+      }
   ;
 
 Keyword
@@ -42,38 +64,65 @@ Keyword
   | SET
   ;
 
-SetterStatement
+StatementExpression
   : Keyword PropertyLookup
+      {
+        var prop = new yy.Action($1, $2)
+        $$ = prop;
+      }
+  | Keyword PropertyExpression
+      {
+        var prop = new yy.Action($1, $2)
+        $$ = prop;
+      }
   | PropertyLookup
   ;
 
 PropertyLookup
   : PropertyExpression Block
-  | PropertyExpression NPOINTER StringIdentifier
-  | PropertyExpression NPOINTER STRIDENTIFIER Block
+      {
+        $1.body = $2;
+        $$ = $1;
+      }
+  | PropertyExpression NPOINTER STRING
+      {
+        $1.name = $3;
+        $$ = $1;
+      }
+  | PropertyExpression NPOINTER STRING Block
+      {
+        $1.name = $3;
+        $1.body = $4;
+        $$ = $1;
+      }
   ;
 
 PropertyExpression
   : MemberExpression
-  | DOT IdentifierName
+  | DOT IDENTIFIER
+      {
+        $$ = new yy.Property($2, $2, 'THIS');
+      }
   ;  
 
 MemberExpression
-  : IdentifierName
-  | THISTOKEN IdentifierName
-  | MemberExpression '[' StringIdentifier ']'
-  | MemberExpression DOT IdentifierName
+  : THISTOKEN IDENTIFIER
+      {
+        $$ = new yy.Property($2, $2, 'GLOBAL');
+      }
+  | MemberExpression OPENBRACKET STRING CLOSEBRACKET
+      {
+        var prop = new yy.Property($3, $3, 'PARENT');
+        $1.body.push(prop);
+      }
+  | MemberExpression DOT IDENTIFIER
+      {
+        var prop = new yy.Property($3, $3, 'PARENT');
+        $1.body.push(prop);
+      }
   ;
 
 Statement
-  : SetterStatement
+  : StatementExpression
   | PropertyExpression
-  ;
-
-IdentifierName
-  : IDENTIFIER
-  ;
-
-StringIdentifier
-  : STRIDENTIFIER
   ;
