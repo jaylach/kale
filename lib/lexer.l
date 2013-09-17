@@ -38,10 +38,11 @@ ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
 "array"         { return 'ARRAY'; }
 "set"           { return 'SET'; }
 "copy"          { return 'COPY'; }
-"true"          { return 'TRUE'; }
-"false"         { return 'FALSE'; }
-"yes"           { return 'TRUE'; }
-"no"            { return 'FALSE'; }
+"named"         { return 'NAMED'; }
+"true"          { yytext = true; return 'TRUE'; }
+"false"         { yytext = false; return 'TRUE'; }
+"yes"           { yytext = true; return 'TRUE'; }
+"no"            { yytext = false; return 'TRUE'; }
 {ident}         { return 'IDENTIFIER'; } 
 "=>"            { return 'NPOINTER'; }
 "="             { return 'EQUALS'; }

@@ -102,6 +102,7 @@ ConfigSetter
 
 ConfigProperty
   : COPY
+  | NAMED
   ;
 
 StatementExpression
