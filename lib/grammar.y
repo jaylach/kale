@@ -1,7 +1,7 @@
 %start Template
 
 %left MemberExpression
-%left PropertyExpression
+%left ConfigSetter
 %left DOT
 
 %%
@@ -22,17 +22,32 @@ Template
 TemplateElements
   : TemplateElement
       { 
-        $$ = [ $1 ]; 
+        if ( Array.isArray($1) ) {
+          $$ = $1;
+        }
+        else {
+          $$ = [ $1 ]; 
+        }
       }
   | TemplateElements TemplateElement
       {
-        $1.push($2);
+        if ( Array.isArray($2) ) {
+          $1 = $1.concat($2);
+        }
+        else {
+          $1.push($2);
+        }
         $$ = $1;
       }
   ;
 
 TemplateElement
   : Statement
+  | ConfigSetter
+  | Comment
+      {
+        $$ = new yy.Comment($1);
+      }
   ;
 
 Block
@@ -40,12 +55,17 @@ Block
   | ScriptBlock
   ;
 
+Comment
+  : COMMENT_BLOCK
+  | COMMENT
+  ;
+
 TemplateBlock
-  : OPENBRACE CLOSEBRACE
+  : OPEN_BRACE CLOSE_BRACE
       {
         $$ = [];
       }
-  | OPENBRACE TemplateElements CLOSEBRACE
+  | OPEN_BRACE TemplateElements CLOSE_BRACE
       {
         $$ = $2;
       }
@@ -64,29 +84,67 @@ Keyword
   | SET
   ;
 
+Boolean
+  : TRUE
+  | FALSE
+  ;
+
+ConfigSetter
+  : ConfigProperty EQUALS Boolean
+      {
+        $$ = [ new yy.Config($1, $3) ];
+      }
+  | ConfigSetter COMMA ConfigProperty EQUALS Boolean
+      {
+        $1.push(new yy.Config($3, $5));
+        $$ = $1
+      }
+  ;
+
+ConfigProperty
+  : INHERIT
+  ;
+
 StatementExpression
-  : Keyword PropertyLookup
+  : Keyword PropertyLookups
       {
         var prop = new yy.Action($1, $2)
         $$ = prop;
       }
-  | Keyword PropertyExpression
+  | Keyword PropertyLookupBlock
       {
         var prop = new yy.Action($1, $2)
         $$ = prop;
       }
-  | PropertyLookup
+  | PropertyLookups
+  | PropertyLookupBlock
   ;
 
 PropertyLookup
-  : PropertyExpression Block
-      {
-        $1.body = $2;
-        $$ = $1;
-      }
+  : PropertyExpression
   | PropertyExpression NPOINTER STRING
       {
         $1.name = $3;
+        $$ = $1;
+      }
+  ;
+
+PropertyLookups
+  : PropertyLookup
+      { 
+        $$ = [ $1 ] 
+      }
+  | PropertyLookups COMMA PropertyLookup
+      {
+        $1.push($3)
+        $$ = $1
+      }
+  ;
+
+PropertyLookupBlock 
+  : PropertyExpression Block
+      {
+        $1.body = $2;
         $$ = $1;
       }
   | PropertyExpression NPOINTER STRING Block
@@ -110,7 +168,7 @@ MemberExpression
       {
         $$ = new yy.Property($2, $2, 'GLOBAL');
       }
-  | MemberExpression OPENBRACKET STRING CLOSEBRACKET
+  | MemberExpression OPEN_BRACKET STRING CLOSE_BRACKET
       {
         var prop = new yy.Property($3, $3, 'PARENT');
         $1.body.push(prop);
@@ -124,5 +182,4 @@ MemberExpression
 
 Statement
   : StatementExpression
-  | PropertyExpression
   ;
