@@ -1,12 +1,11 @@
-var fs = require('fs');
+var javelin = require('./lib/javelin');
 
-var parser = require('./lib/parser').parser;
-parser.yy = require('./lib/nodes');
-
-fs.readFile('./examples/simple.jav', 'UTF8', function(err, data) {
-  if ( err == null ) {
-    var result = parser.parse(data);
-    console.log(result.formatJSON({}));
-    //console.log(JSON.stringify(result));
+var locals = {
+  test: {
+    foo: 'bar',
+    bar: 'baz'
   }
-});
+};
+
+var compile = javelin.compile('./examples/simple.jav', 'json');
+console.log(compile(locals, true));
