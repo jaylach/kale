@@ -101,7 +101,7 @@ ConfigSetter
   ;
 
 ConfigProperty
-  : INHERIT
+  : COPY
   ;
 
 StatementExpression

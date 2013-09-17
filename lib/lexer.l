@@ -2,11 +2,6 @@ ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
 
 %%
 
-"'"(?:"\\"(?:.)|[^'\\])*"'" %{
-  yytext = yytext.substr(1, yyleng - 2);
-  return 'STRING'
-%}
-
 ^(\%\{)([^\\`]*(?:\\.[^\\`]*)*)(\%\}) %{
   yytext = yytext.substr(2, yyleng - 4).trim();
   return 'SCRIPTBLOCK';
@@ -32,15 +27,21 @@ ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
   return 'COMMENT';
 %}
 
+"'"(?:"\\"(?:.)|[^'\\])*"'" %{
+  yytext = yytext.substr(1, yyleng - 2);
+  return 'STRING'
+%}
+
+
 \s+             { /* skip whitespace */ }
 "object"        { return 'OBJECT'; }
 "array"         { return 'ARRAY'; }
 "set"           { return 'SET'; }
-"inherit"       { return 'INHERIT'; }
+"copy"          { return 'COPY'; }
 "true"          { return 'TRUE'; }
 "false"         { return 'FALSE'; }
-"yes"           { return 'YES'; }
-"no"            { return 'NO'; }
+"yes"           { return 'TRUE'; }
+"no"            { return 'FALSE'; }
 {ident}         { return 'IDENTIFIER'; } 
 "=>"            { return 'NPOINTER'; }
 "="             { return 'EQUALS'; }

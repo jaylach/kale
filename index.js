@@ -8,4 +8,4 @@ var locals = {
 };
 
 var compile = javelin.compile('./examples/simple.jav', 'json');
-console.log(compile(locals, true));
+console.log(compile(locals));

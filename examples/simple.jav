@@ -2,9 +2,9 @@
   TEST
 ###
 
-object @test => 'foo' {
-  inherit=false
+object @test {
+  copy = yes
 
-  .bar => 'baz'
+  .foo => 'baz', .bar
 }
 
