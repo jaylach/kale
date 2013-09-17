@@ -1,7 +1,6 @@
 %start Template
 
 %left MemberExpression
-%left ConfigSetter
 %left DOT
 
 %%
