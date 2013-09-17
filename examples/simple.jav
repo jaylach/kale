@@ -1,21 +1,10 @@
-object @test {
-  
+###
+  TEST
+###
+
+object @test => 'foo' {
+  inherit=false
+
+  .bar => 'baz'
 }
 
-object @test => 'test' %{
-  
-%}
-
-array @test.two %{
-  function() {
-    return 'blah';
-  }
-%}
-
-array .test => 'one' {
-  .one => 'two'
-}
-
-@test => 'testing'
-
-.test => 'testing'
