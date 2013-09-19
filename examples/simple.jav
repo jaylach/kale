@@ -2,12 +2,16 @@
   TEST
 ###
 
-object @foo {
-  :named = no
+object @test {
+  # Settings
+  :named = false
+  :copy = no
 
-  array .test => 'foo' {
-    .one => 'bar'
-    .two => 'baz'
-    .three => 'qux'
+  # Properties
+  .foo, .bar, .baz
+
+  # Array
+  array .qux {
+    .one => '1', .two => '2'
   }
 }
