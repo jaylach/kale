@@ -173,7 +173,7 @@ beta progress
 * AST to JSON builder
   * ~~Object building~~
   * ~~Array building~~
-  * Javascript compilation
+* Inline Javascript implementation
 * ~~Refactor how options are set~~
 * Command line compiler
 * Add pluralization/inflection for arrays/objects
