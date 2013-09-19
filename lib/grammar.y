@@ -89,7 +89,7 @@ Block
 ScriptBlock
   : SCRIPTBLOCK
       { 
-        $$ = new yy.Node('SCRIPT', $1);
+        $$ = [ new yy.Script($1) ];
       }
   ;
 

@@ -15,7 +15,9 @@ var locals = {
 };
 
 var compile = javelin.compile('simple.jav', 'json');
-var ast = compile(locals, true);
-var result = compile(locals);
 
+var ast = compile(locals, true);
+//console.log(ast);
+
+var result = compile(locals);
 console.log(JSON.stringify(result, null, 4));

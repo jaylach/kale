@@ -4,10 +4,14 @@
 
 object @test {
   # Settings
-  -named
+  -named, -copy
 
   # Properties
-  .foo, .bar, .baz
+  .foo
+
+  set .baz %{
+    return parent.bar + ' ' + value;
+  %}
 
   # Array
   array .qux {
