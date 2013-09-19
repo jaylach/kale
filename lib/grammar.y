@@ -141,8 +141,8 @@ TemplateBlockElements
  */
 
 PropertyLookup
-  : PropertyExpression
-  | PropertyExpression NPOINTER STRING
+  : MemberExpression
+  | MemberExpression NPOINTER STRING
       {
         $1.name = $3;
         $$ = $1;
@@ -162,12 +162,12 @@ PropertyLookups
   ;
 
 PropertyLookupBlock 
-  : PropertyExpression Block
+  : MemberExpression Block
       {
         $1.body = $2;
         $$ = $1;
       }
-  | PropertyExpression NPOINTER STRING Block
+  | MemberExpression NPOINTER STRING Block
       {
         $1.name = $3;
         $1.body = $4;
@@ -175,29 +175,19 @@ PropertyLookupBlock
       }
   ;
 
-PropertyExpression
-  : MemberExpression
-  | DOT IDENTIFIER
-      {
-        $$ = new yy.Property($2, $2, 'THIS');
-      }
-  ;  
-
 MemberExpression
   : THISTOKEN IDENTIFIER
       {
         $$ = new yy.Property($2, $2, 'GLOBAL');
       }
-  /*| MemberExpression OPEN_BRACKET STRING CLOSE_BRACKET
+  | DOT IDENTIFIER
       {
-        var prop = new yy.Property($3, $3, 'PARENT');
-        $1.body.push(prop);
+        $$ = new yy.Property($2, $2, 'THIS');
       }
-  | MemberExpression DOT IDENTIFIER
+  | DOT STRING
       {
-        var prop = new yy.Property($3, $3, 'PARENT');
-        $1.body.push(prop);
-      }*/
+        $$ = new yy.Property($2, $2, 'THIS');
+      }
   ;
 
 /* 
