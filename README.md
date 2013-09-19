@@ -89,6 +89,7 @@ progress
   * ~~Array building~~
   * Javascript compilation
 * AST to XML builder
+* Command line compiler
 
 And...
 
