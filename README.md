@@ -136,8 +136,10 @@ beta progress
   * ~~Object building~~
   * ~~Array building~~
   * Javascript compilation
-* AST to XML builder
 * Command line compiler
+* Add pluralization/inflection for arrays/objects
+* AST to XML builder
+
 
 And...
 
