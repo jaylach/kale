@@ -73,6 +73,8 @@ Our console output will look like this...
 
 syntax
 ------
+__note: this section is a total work in progress__
+
 copy an object from `locals` to result
 ```
 object @foo
@@ -98,7 +100,8 @@ object @app_user => 'user' {
   # Do not copy non-specified properties from app_user object
   :copy = false
 
-  ._id => 'id', .uname => 'user_name'
+  set ._id => 'id'
+  set .uname => 'user_name'
 }
 ```
 
@@ -106,6 +109,8 @@ copy array to object
 ```
 object @app_user => 'user' {
   :copy = false
+
+  # The set keyword can be omitted while inside an object or array
   ._id => 'id', .uname => 'user_name'
 
   array .user_groups => 'groups' {
