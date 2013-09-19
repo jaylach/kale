@@ -16,8 +16,6 @@ object @test {
   .foo, .bar, .baz
 
   array .qux => 'quux' {
-    :copy = false
-
     .one => '1'
     .two => '2'
   }
@@ -45,6 +43,20 @@ var compile = javelin.compile('/path/to/index.jav', 'json');
 
 // Do our actual compelation
 var result = compile(locals);
+console.log(JSON.stringify(result, null, 4));
+```
+
+Our console output will look like this...
+```json
+{
+  "foo": "foo",
+  "bar": "bar",
+  "baz": "baz",
+  "quux": [
+    { "1": "one", "2": "two" },
+    { "1": "three", "2": "four" }
+  ]
+}
 ```
 
 license
