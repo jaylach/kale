@@ -155,6 +155,7 @@ beta progress
 * ~~Refactor how options are set~~
 * Command line compiler
 * Add pluralization/inflection for arrays/objects
+* Partials Support
 * AST to XML builder
 
 
