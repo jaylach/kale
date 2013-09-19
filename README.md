@@ -1,6 +1,6 @@
 overview
 --------
-_javeling is currently in an alpha, half complete, state._
+_javelin is currently in an alpha, half complete, state_
 
 javelin is a view templating engine for your node.js based RESTful APIs. It allows you to 
 treat the data of your API as you would any other view. The gain here is that you can 
@@ -73,7 +73,7 @@ Our console output will look like this...
 
 syntax
 ------
-__note: this section is a total work in progress__
+_note: this section is a total work in progress_
 
 copy an object from `locals` to result
 ```
@@ -128,6 +128,28 @@ object @app_user => 'user' {
 
   # We can access 'stringed' object keys by using .'the key' notation
   .'role id' => 'role_id'
+
+  array .user_groups => 'groups' {
+    ._id => 'id'
+  }
+}
+```
+
+should you require more intricate control over a property value, you can use inline javascript. The value
+return from the inline script will be used as the value for the property, so long as the value is not null or
+undefined. 
+
+_note: inline scripting is a WIP and currently very limited in implementation_
+```
+object @app_user => 'user' {
+  -copy
+
+  ._id => 'id', .uname => 'user_name'
+  .'role id' => 'role_id'
+
+  .name %{
+    return parent.first_name + ' ' + parent.last_name;
+  %}
 
   array .user_groups => 'groups' {
     ._id => 'id'
