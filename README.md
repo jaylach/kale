@@ -71,8 +71,51 @@ Our console output will look like this...
 }
 ```
 
-progress
---------
+syntax
+------
+copy an object from `locals` to result
+```
+object @foo
+```
+
+copy an object from `locals` to result, changing it's name
+```
+object @foo => 'bar'
+```
+
+copy an object from `locals` to result without adding it to a wrapper object
+```
+object @foo {
+  # true/yes and false/no are interchangeable
+  :named = no 
+}
+```
+
+copy specific properties to object, changing their names
+```
+# object @foo 
+object @app_user => 'user' {
+  # Do not copy non-specified properties from app_user object
+  :copy = false
+
+  ._id => 'id', .uname => 'user_name'
+}
+```
+
+copy array to object
+```
+object @app_user => 'user' {
+  :copy = false
+  ._id => 'id', .uname => 'user_name'
+
+  array .user_groups => 'groups' {
+    ._id => 'id'
+  }
+}
+```
+
+beta progress
+-------------
 * ~~Jison based lexer~~
 * ~~Jison based grammar~~
   * ~~object keyword~~
