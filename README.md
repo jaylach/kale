@@ -1,6 +1,51 @@
-A view engine for your RESTful APIs. 
+what is it?
+-----------
+javelin is a view templating engine for your node.js based RESTful APIs. It allows you to 
+treat the data of your API as you would any other view. The gain here is that you can 
+separate your view logic from controllers and models. javelin can compile to JSON and XML
+natively though other builders can be plugged in to allow compilation to any other format.
+The syntax of javeling is inspired by the Ruby gem known as [rabl](https://github.com/nesquena/rabl).
 
-TODO: Add a bunch more information here. Will do once the project gets into a working state.
+usage
+-----
+Inside our `index.jav` file
+```
+object @test {
+  :named = false
+
+  .foo, .bar, .baz
+
+  array .qux => 'quux' {
+    :copy = false
+
+    .one => '1'
+    .two => '2'
+  }
+}
+```
+
+Inside our `index.js` file...
+```javascript
+var javelin = require('javelin');
+
+var locals = {
+  test: {
+    foo: 'foo',
+    bar: 'bar',
+    baz: 'baz',
+    qux: [
+      { one: 'one', two: 'two' },
+      { one: 'three', two: 'four' }
+    ]
+  }
+};
+
+// Get a json-based compiler for our *.jav file
+var compile = javelin.compile('/path/to/index.jav', 'json');
+
+// Do our actual compelation
+var result = compile(locals);
+```
 
 license
 -------
