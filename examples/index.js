@@ -9,7 +9,8 @@ var locals = {
       { one: 'foo', two: 'bar' },
       { one: 'foo', two: 'bar' },
       { one: 'foo', two: 'bar' }
-    ]
+    ],
+    "a string": 'a string'
   }
 };
 
