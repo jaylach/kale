@@ -25,11 +25,11 @@ Inside our `index.jav` file
 object @test {
   :named = false
 
-  .foo, .bar, .baz
+  set .foo, .bar, .baz
 
   array .qux => 'quux' {
-    .one => '1'
-    .two => '2'
+    set .one => '1'
+    set .two => '2'
   }
 }
 ```
