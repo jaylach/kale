@@ -119,6 +119,22 @@ object @app_user => 'user' {
 }
 ```
 
+accessing 'stringed' keys on an object
+```
+object @app_user => 'user' {
+  -copy
+
+  ._id => 'id', .uname => 'user_name'
+
+  # We can access 'stringed' object keys by using .'the key' notation
+  .'role id' => 'role_id'
+
+  array .user_groups => 'groups' {
+    ._id => 'id'
+  }
+}
+```
+
 beta progress
 -------------
 * ~~Jison based lexer~~
