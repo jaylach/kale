@@ -23,7 +23,7 @@ usage
 Inside our `index.jav` file
 ```
 object @test {
-  :named = false
+  -named
 
   set .foo, .bar, .baz
 
@@ -88,8 +88,8 @@ object @foo => 'bar'
 copy an object from `locals` to result without adding it to a wrapper object
 ```
 object @foo {
-  # true/yes and false/no are interchangeable
-  :named = no 
+  # If we wanted to set it to true, we'd say +named
+  -named
 }
 ```
 
@@ -98,7 +98,7 @@ copy specific properties to object, changing their names
 # object @foo 
 object @app_user => 'user' {
   # Do not copy non-specified properties from app_user object
-  :copy = false
+  -copy
 
   set ._id => 'id'
   set .uname => 'user_name'
@@ -108,7 +108,7 @@ object @app_user => 'user' {
 copy array to object
 ```
 object @app_user => 'user' {
-  :copy = false
+  -copy
 
   # The set keyword can be omitted while inside an object or array
   ._id => 'id', .uname => 'user_name'
@@ -136,8 +136,7 @@ beta progress
   * ~~Object building~~
   * ~~Array building~~
   * Javascript compilation
-* Refactor how options are set
-  * Add +config/-config instead of :config=true/:config=false
+* ~~Refactor how options are set~~
 * Command line compiler
 * Add pluralization/inflection for arrays/objects
 * AST to XML builder

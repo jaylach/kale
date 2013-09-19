@@ -205,20 +205,31 @@ MemberExpression
  */
 
 ConfigSetter
-  : ConfigProperty EQUALS Boolean
+  : ConfigProperty
       {
-        $$ = [ new yy.Config($1, $3) ];
+        if ( Array.isArray($1) ) {
+          $$ = $1;
+        }
+        else {
+          $$ = [ $1 ]; 
+        }
       }
-  | ConfigSetter COMMA ConfigProperty EQUALS Boolean
-      {
-        $1.push(new yy.Config($3, $5));
-        $$ = $1
+  | ConfigSetter COMMA ConfigProperty
+      { 
+        $1.push($3);
+        $$ = $1;
       }
   ;
 
 ConfigProperty
-  : COPY
-  | NAMED
+  : PLUS COPY
+      { $$ = new yy.Config($2, true); }
+  | MINUS COPY
+      { $$ = new yy.Config($2, false); }
+  | PLUS NAMED
+      { $$ = new yy.Config($2, true); }
+  | MINUS NAMED
+      { $$ = new yy.Config($2, false); }
   ;
 
 /*

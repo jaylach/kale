@@ -37,8 +37,8 @@ ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
 "object"        { return 'OBJECT'; }
 "array"         { return 'ARRAY'; }
 "set"           { return 'SET'; }
-":copy"         { yytext = yytext.substr(1); return 'COPY'; }
-":named"        { yytext = yytext.substr(1); return 'NAMED'; }
+"copy"          { return 'COPY'; }
+"named"         { return 'NAMED'; }
 "true"          { yytext = true; return 'TRUE'; }
 "false"         { yytext = false; return 'FALSE'; }
 "yes"           { yytext = true; return 'TRUE'; }
@@ -49,6 +49,8 @@ ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
 "@"             { return 'THISTOKEN'; }
 "."             { return 'DOT'; }
 ","             { return 'COMMA'; }
+"+"             { return 'PLUS'; }
+"-"             { return 'MINUS'; }
 "["             { return 'OPEN_BRACKET'; }
 "]"             { return 'CLOSE_BRACKET'; }
 "{"             { return 'OPEN_BRACE'; }

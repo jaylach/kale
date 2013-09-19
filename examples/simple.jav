@@ -4,8 +4,7 @@
 
 object @test {
   # Settings
-  :named = false
-  :copy = no
+  -named, -copy
 
   # Properties
   .foo, .bar, .baz
