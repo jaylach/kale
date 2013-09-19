@@ -2,5 +2,12 @@
   TEST
 ###
 
-@test { named = yes }
+object @foo {
+  :named = no
 
+  array .test => 'foo' {
+    .one => 'bar'
+    .two => 'baz'
+    .three => 'qux'
+  }
+}
