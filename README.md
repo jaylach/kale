@@ -14,6 +14,10 @@ javelin sets out to solve a few main problems.
 * A simple, lightweight templating language that makes sense for application data
 * Ability to serve API data in different formats from the same view
 
+installation
+------------
+javelin is not yet on npm so you will need to clone this repo into your project's node_modules folder.
+
 usage
 -----
 Inside our `index.jav` file
@@ -66,6 +70,29 @@ Our console output will look like this...
   ]
 }
 ```
+
+progress
+--------
+* ~~Jison based lexer~~
+* ~~Jison based grammar~~
+  * ~~object keyword~~
+  * ~~array keyword~~
+  * ~~set keyword~~
+  * ~~action configuration~~
+  * ~~comments~~
+  * ~~inline javascript~~
+  * object accessors (i.e: @foo.bar and foo['bar'])
+  * map, reduce, etc...
+* ~~Parser to AST structure~~
+* AST to JSON builder
+  * ~~Object building~~
+  * ~~Array building~~
+  * Javascript compilation
+* AST to XML builder
+
+And...
+
+Tests, tests, and more tests...
 
 license
 -------
