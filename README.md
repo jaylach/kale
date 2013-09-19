@@ -136,6 +136,8 @@ beta progress
   * ~~Object building~~
   * ~~Array building~~
   * Javascript compilation
+* Refactor how options are set
+  * Add +config/-config instead of :config=true/:config=false
 * Command line compiler
 * Add pluralization/inflection for arrays/objects
 * AST to XML builder
