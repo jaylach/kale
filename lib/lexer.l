@@ -37,12 +37,12 @@ ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
 "object"        { return 'OBJECT'; }
 "array"         { return 'ARRAY'; }
 "set"           { return 'SET'; }
-"copy"          { return 'COPY'; }
-"named"         { return 'NAMED'; }
+":copy"         { yytext = yytext.substr(1); return 'COPY'; }
+":named"        { yytext = yytext.substr(1); return 'NAMED'; }
 "true"          { yytext = true; return 'TRUE'; }
-"false"         { yytext = false; return 'TRUE'; }
+"false"         { yytext = false; return 'FALSE'; }
 "yes"           { yytext = true; return 'TRUE'; }
-"no"            { yytext = false; return 'TRUE'; }
+"no"            { yytext = false; return 'FALSE'; }
 {ident}         { return 'IDENTIFIER'; } 
 "=>"            { return 'NPOINTER'; }
 "="             { return 'EQUALS'; }
@@ -53,5 +53,4 @@ ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
 "]"             { return 'CLOSE_BRACKET'; }
 "{"             { return 'OPEN_BRACE'; }
 "}"             { return 'CLOSE_BRACE'; }
-\n              { return 'TERMINATOR'; }
 <<EOF>>         { return 'EOF'; }

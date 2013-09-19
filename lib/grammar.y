@@ -5,6 +5,10 @@
 
 %%
 
+/*
+ *  Root
+ */
+
 Template
   : 
       {
@@ -15,6 +19,18 @@ Template
       { 
         $$ = new yy.Template($1);
         return $$;
+      }
+  ;
+
+/*
+ *  TemplateElements
+ */
+
+TemplateElement
+  : Statement
+  | Comment
+      {
+        $$ = new yy.Comment($1);
       }
   ;
 
@@ -40,34 +56,34 @@ TemplateElements
       }
   ;
 
-TemplateElement
-  : Statement
-  | ConfigSetter
-  | Comment
+Statement
+  : StatementExpression
+  ;
+
+StatementExpression
+  : Keyword PropertyLookups
       {
-        $$ = new yy.Comment($1);
+        if ( Array.isArray($2) && $2.length === 1 ) {
+          $$ = new yy.Action($1, $2[0]);
+        }
+        else {
+          var actions = [];
+          $2.forEach(function(action) {
+            actions.push(new yy.Action($1, action));
+          });
+
+          $$ = actions;
+        }
+      }
+  | Keyword PropertyLookupBlock
+      {
+        $$ = new yy.Action($1, $2);
       }
   ;
 
 Block
   : TemplateBlock
   | ScriptBlock
-  ;
-
-Comment
-  : COMMENT_BLOCK
-  | COMMENT
-  ;
-
-TemplateBlock
-  : OPEN_BRACE CLOSE_BRACE
-      {
-        $$ = [];
-      }
-  | OPEN_BRACE TemplateElements CLOSE_BRACE
-      {
-        $$ = $2;
-      }
   ;
 
 ScriptBlock
@@ -77,48 +93,52 @@ ScriptBlock
       }
   ;
 
-Keyword
-  : OBJECT
-  | ARRAY
-  | SET
-  ;
+/* 
+ *  TemplateBlock
+ */
 
-Boolean
-  : TRUE
-  | FALSE
-  ;
-
-ConfigSetter
-  : ConfigProperty EQUALS Boolean
+TemplateBlock
+  : OPEN_BRACE CLOSE_BRACE
       {
-        $$ = [ new yy.Config($1, $3) ];
+        $$ = [];
       }
-  | ConfigSetter COMMA ConfigProperty EQUALS Boolean
+  | OPEN_BRACE TemplateBlockElements CLOSE_BRACE
       {
-        $1.push(new yy.Config($3, $5));
-        $$ = $1
+        $$ = $2;
       }
   ;
 
-ConfigProperty
-  : COPY
-  | NAMED
+TemplateBlockElement
+  : PropertyLookups
+  | TemplateElement
+  | ConfigSetter
   ;
 
-StatementExpression
-  : Keyword PropertyLookups
-      {
-        var prop = new yy.Action($1, $2)
-        $$ = prop;
+TemplateBlockElements
+  : TemplateBlockElement
+      { 
+        if ( Array.isArray($1) ) {
+          $$ = $1;
+        }
+        else {
+          $$ = [ $1 ]; 
+        }
       }
-  | Keyword PropertyLookupBlock
+  | TemplateBlockElements TemplateBlockElement
       {
-        var prop = new yy.Action($1, $2)
-        $$ = prop;
+        if ( Array.isArray($2) ) {
+          $1 = $1.concat($2);
+        }
+        else {
+          $1.push($2);
+        }
+        $$ = $1;
       }
-  | PropertyLookups
-  | PropertyLookupBlock
   ;
+
+/*
+ *  Properties
+ */
 
 PropertyLookup
   : PropertyExpression
@@ -132,12 +152,12 @@ PropertyLookup
 PropertyLookups
   : PropertyLookup
       { 
-        $$ = [ $1 ] 
+        $$ = [ $1 ];
       }
   | PropertyLookups COMMA PropertyLookup
       {
-        $1.push($3)
-        $$ = $1
+        $1.push($3);
+        $$ = $1;
       }
   ;
 
@@ -168,7 +188,7 @@ MemberExpression
       {
         $$ = new yy.Property($2, $2, 'GLOBAL');
       }
-  | MemberExpression OPEN_BRACKET STRING CLOSE_BRACKET
+  /*| MemberExpression OPEN_BRACKET STRING CLOSE_BRACKET
       {
         var prop = new yy.Property($3, $3, 'PARENT');
         $1.body.push(prop);
@@ -177,9 +197,47 @@ MemberExpression
       {
         var prop = new yy.Property($3, $3, 'PARENT');
         $1.body.push(prop);
+      }*/
+  ;
+
+/* 
+ *  Config Actions
+ */
+
+ConfigSetter
+  : ConfigProperty EQUALS Boolean
+      {
+        $$ = [ new yy.Config($1, $3) ];
+      }
+  | ConfigSetter COMMA ConfigProperty EQUALS Boolean
+      {
+        $1.push(new yy.Config($3, $5));
+        $$ = $1
       }
   ;
 
-Statement
-  : StatementExpression
+ConfigProperty
+  : COPY
+  | NAMED
+  ;
+
+/*
+ *  Helpers
+ */
+
+Comment
+  : COMMENT_BLOCK
+  | COMMENT
+  ;
+
+Keyword
+  : OBJECT
+  | ARRAY
+  | SET
+      { $$ = 'property' }
+  ;
+
+Boolean
+  : TRUE
+  | FALSE
   ;
