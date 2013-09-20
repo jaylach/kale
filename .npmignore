@@ -1,0 +1,5 @@
+.git*
+examples/
+.DS_Store
+lib/grammar.y
+lib/lexer.l
