@@ -27,7 +27,7 @@ Template
  */
 
 TemplateElement
-  : Statement
+  : Statement  
   | Comment
       {
         $$ = new yy.Comment($1);
