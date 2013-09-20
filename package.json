@@ -5,13 +5,16 @@
   "main": "index.js",
   "dependencies": {
     "assert-plus": "~0.1.4",
-    "jison": "~0.4.13",
-    "lex": "~1.7.4",
+    "i": "~0.3.2",
     "underscore": "~1.5.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jison": "~0.4.13",
+    "mocha": "*",
+    "should": "*"
+  },
   "scripts": {
-    "parser": "./node_modules/.bin/jison lib/grammar.y ./lib/lexer.l -o lib/parser.js -p lalr"
+    "prepublish": "./node_modules/.bin/jison lib/grammar.y ./lib/lexer.l -o lib/parser.js -p lalr"
   },
   "repository": "",
   "keywords": [
