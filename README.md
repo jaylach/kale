@@ -173,7 +173,8 @@ beta progress
 * AST to JSON builder
   * ~~Object building~~
   * ~~Array building~~
-* Inline Javascript implementation
+* ~~Inline Javascript implementation~~
+  * A basic, rudimentary implemention is included. Needs to be extended, though.
 * ~~Refactor how options are set~~
 * Command line compiler
 * Add pluralization/inflection for arrays/objects
