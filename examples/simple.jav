@@ -1,6 +1,6 @@
-###
-  TEST
-###
+script %{
+  
+%}
 
 object @test {
   # Settings
@@ -10,7 +10,7 @@ object @test {
   .foo
 
   set .baz %{
-    return parent.bar + ' ' + value;
+    return parent.bar + ' ' + node.value;
   %}
 
   # Array
