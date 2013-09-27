@@ -49,8 +49,57 @@ describe('Array Tests', function() {
   }); //- test03
 
   // test04
-  it('Should execute inline script and set returned value', function() {
+  it('Should support full embedded object syntax', function() {
     var compile = javelin.compile('./test/javelin/array/test04.jav', 'json');
+
+    // Create a new set of locals for this test only
+    var newLocals = {
+      "foos": [
+        { 
+          "one": "1", 
+          "two": "2",
+          "three": {
+            "foo": "bar",
+            "baz": "qux"
+          }
+        },
+        { 
+          "one": "3", 
+          "two": "4",
+          "four": {
+            "five": "6"
+          }
+        }
+      ]
+    };
+
+    // Expected
+    var expected = {
+      "foos": [
+        { 
+          "one": "1", 
+          "two": "2",
+          "three": {
+            "bar": "bar",
+            "qux": "qux"
+          }
+        },
+        { 
+          "one": "3", 
+          "two": "4",
+          "three": {},
+          "five": "6"
+        }
+      ]
+    };
+
+    var result = compile(newLocals);
+    result.should.eql(expected);
+  }); //- test04
+
+  // test05
+  it('Should execute inline script and set returned value', function() {
+    var compile = javelin.compile('./test/javelin/array/test05.jav', 'json');
     var result = compile(locals);
     
     var expected = {
@@ -61,5 +110,5 @@ describe('Array Tests', function() {
     };
 
     result.should.eql(expected);
-  }); //- test04
+  }); //- test05
 }); //- describe()
