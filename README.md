@@ -170,7 +170,7 @@ beta progress
   * object accessors (i.e: @foo.bar and foo['bar'])
   * map, reduce, etc...
 * ~~Parser to AST structure~~
-* AST to JSON builder
+* ~~AST to JSON builder~~
   * ~~Object building~~
   * ~~Array building~~
 * ~~Inline Javascript implementation~~
