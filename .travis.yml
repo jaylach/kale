@@ -1,3 +1,9 @@
  language: node_js
  node_js:
-   - "0.8"
+   - "0.8.x"
+  notifications:
+    email:
+      recipients:
+        - toys@codegrit.com
+      on_success: never
+      on_failure: always
