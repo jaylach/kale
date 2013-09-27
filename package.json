@@ -15,6 +15,7 @@
     "should": "*"
   },
   "scripts": {
+    "test": "make test",
     "prepublish": "./node_modules/.bin/jison lib/grammar.y ./lib/lexer.l -o lib/parser.js -p lalr"
   },
   "repository": "",
