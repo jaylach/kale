@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jaylach/javelin.png?branch=master)](https://travis-ci.org/jaylach/javelin)
+
 overview
 --------
 _javelin is currently in an alpha, half complete, state_
