@@ -1,18 +1,11 @@
 var javelin = require('../index');
 
-var locals = {
-  test: {
-    foo: 'foo', 
-    bar: 'bar',
-    baz: 'baz',
-    qux: [
-      { one: 'foo', two: 'bar' },
-      { one: 'foo', two: 'bar' },
-      { one: 'foo', two: 'bar' }
-    ],
-    "a string": 'a string'
-  }
-};
+  var locals = {
+    "foos": [
+      { "one": "1", "two": "2" },
+      { "one": "3", "two": "4" }
+    ]
+  };
 
 var compile = javelin.compile('simple.jav', 'json');
 
