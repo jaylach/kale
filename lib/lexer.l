@@ -2,7 +2,7 @@ ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
 
 %%
 
-^(\%\{)([^\\`]*(?:\\.[^\\`]*)*)(\%\}) %{
+"%{"(.|\n|\r)*?"%}" %{
   yytext = "(function() { " + yytext.substr(2, yyleng - 4).trim() + "})();";
   return 'SCRIPTBLOCK';
 %}
