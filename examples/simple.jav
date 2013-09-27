@@ -1,1 +1,5 @@
-array @foos
+array @foos {
+  object .three {
+    -named
+  }
+}

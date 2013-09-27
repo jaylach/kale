@@ -2,8 +2,21 @@ var javelin = require('../index');
 
   var locals = {
     "foos": [
-      { "one": "1", "two": "2" },
-      { "one": "3", "two": "4" }
+      { 
+        "one": "1", 
+        "two": "2",
+        "three": {
+          "foo": "bar",
+          "baz": "qux"
+        }
+      },
+      { 
+        "one": "3", 
+        "two": "4",
+        "four": {
+          "five": "6"
+        }
+      }
     ]
   };
 
