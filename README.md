@@ -216,7 +216,8 @@ beta progress
   * ~~Array building~~
 * ~~Inline Javascript implementation~~ (Stability: 1 - Experimental)
 * ~~Refactor how options are set~~
-* View Caching
+* ~~View Caching~~
+  * View AST is cached, in memory, based on fileName.
 * Command line compiler
 * Partials Support
   * ~~Include~~ (Stability: 1 - Experimental)
