@@ -55,12 +55,10 @@ var locals = {
   }
 };
 
-// Get a json-based compiler for our *.jav file
-var compile = javelin.compileFile('/path/to/index.jav', 'json');
-
 // Do our actual compelation
-var result = compile(locals);
-console.log(JSON.stringify(result, null, 4));
+javelin.renderFile('/path/to/index.jav', 'json', locals, function(error, result) {
+  console.log(result);  
+});
 ```
 
 Our console output will look like this...
