@@ -172,15 +172,14 @@ beta progress
   * object accessors (i.e: @foo.bar and foo['bar'])
   * map, reduce, etc...
 * ~~Parser to AST structure~~
-* ~~AST to JSON builder~~
+* ~~AST to JSON builder~~ (Stability: 2 - Unstable)
   * ~~Object building~~
   * ~~Array building~~
-* ~~Inline Javascript implementation~~
-  * A basic, rudimentary implemention is included. Needs to be extended, though.
+* ~~Inline Javascript implementation~~ (Stability: 1 - Experimental)
 * ~~Refactor how options are set~~
 * Command line compiler
 * Partials Support
-  * Include
+  * ~~Include~~ (Stability: 1 - Experimental)
   * Extend
 * AST to XML builder
 
