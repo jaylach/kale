@@ -1,12 +1,22 @@
 {
   "name": "javelin",
+  "description": "Javascript API View Expression Language",
   "version": "0.1.0",
   "stability": "alpha",
-  "description": "Javascript API View Expression Language",
   "main": "index.js",
+  "keywords": [
+    "api",
+    "view",
+    "template",
+    "json",
+    "xml",
+    "rest"
+  ],
+  "engines": {
+    "node": ">= 0.8"
+  },
   "dependencies": {
     "assert-plus": "~0.1.4",
-    "i": "~0.3.2",
     "underscore": "~1.5.2"
   },
   "devDependencies": {
@@ -18,15 +28,15 @@
     "test": "make test",
     "prepublish": "./node_modules/.bin/jison lib/grammar.y ./lib/lexer.l -o lib/parser.js -p lalr"
   },
-  "repository": "",
-  "keywords": [
-    "api",
-    "view",
-    "template",
-    "json",
-    "xml",
-    "rest"
+  "homepage": "https://github.com/jaylach/tenrec",
+  "bugs": "https://github.com/jaylach/tenrec/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaylach/tenrec.git"
+  },
+  "author": "Jason LaChapelle <toys@codegrit.com>",
+  "contributors": [
+      "Jason LaChapelle <toys@codegrit.com>"
   ],
-  "author": "Jason LaChapelle",
   "license": "MIT"
 }
