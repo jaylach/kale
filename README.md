@@ -164,8 +164,7 @@ currently still in development so it should be considered expirmental. While I d
 for it, I do expect to add a bunch more features to it.
 
 ```
-# Inside includes/userGroups
-
+# Inside includes/userGroups.jav
 array .user_groups => 'groups' {
   ._id => 'id'
 }
