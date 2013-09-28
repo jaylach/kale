@@ -19,7 +19,9 @@ Please note that javelin is currently in an _alpha_ state. Most features are som
 
 installation
 ------------
-javelin is not yet on npm so you will need to clone this repo into your project's node_modules folder.
+```
+npm install javelin
+```
 
 usage
 -----
