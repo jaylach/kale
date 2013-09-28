@@ -2,7 +2,7 @@
   "name": "javelin",
   "description": "Javascript API View Expression Language",
   "version": "0.2.0",
-  "stability": "alpha",
+  "stability": "beta",
   "main": "index.js",
   "keywords": [
     "api",
