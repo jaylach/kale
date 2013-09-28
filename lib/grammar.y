@@ -58,6 +58,10 @@ TemplateElements
 
 Statement
   : StatementExpression
+  | INCLUDE STRING
+      {
+        $$ = new yy.Include($2);
+      }
   ;
 
 StatementExpression
@@ -80,6 +84,10 @@ StatementExpression
         $$ = new yy.Action($1, $2);
       }
   ;
+
+/*
+ *  Blocks
+ */
 
 Block
   : TemplateBlock

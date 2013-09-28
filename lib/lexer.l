@@ -42,7 +42,7 @@ ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
 "object"        { return 'OBJECT'; }
 "array"         { return 'ARRAY'; }
 "set"           { return 'SET'; }
-"script"        { return 'SCRIPT'; }
+"include"       { return 'INCLUDE'; }
 "copy"          { return 'COPY'; }
 "named"         { return 'NAMED'; }
 "true"          { yytext = true; return 'TRUE'; }
