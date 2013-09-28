@@ -218,11 +218,9 @@ beta progress
 * ~~Refactor how options are set~~
 * ~~View Caching~~ [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
   * View AST is cached, in memory, based on fileName.
-* Command line compiler
-* Partials Support
-  * ~~Include~~ [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
+* Partials Support [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
+  * ~~Include~~
   * Extend
-* AST to XML builder
 
 
 And...
