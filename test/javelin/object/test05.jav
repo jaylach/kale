@@ -4,7 +4,7 @@ object @foo {
   set .bar, .qux
 
   object .inner
-  array @outerObject {
+  array @outerArray {
     .'1' => 'one'
     .'2' => 'two'
   }

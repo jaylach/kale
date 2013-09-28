@@ -19,7 +19,7 @@ describe('Object Tests', function() {
         "two": "2"
       }
     },
-    "outerObject": [
+    "outerArray": [
       { "1": "one", "2": "two" },
       { "1": "three", "2": "four" }
     ]
@@ -83,7 +83,7 @@ describe('Object Tests', function() {
           "one": "1",
           "two": "2"
         },
-        "outerObject": [
+        "outerArray": [
           { "one": "one", "two": "two" },
           { "one": "three", "two": "four" }
         ]
@@ -108,4 +108,12 @@ describe('Object Tests', function() {
 
     result.should.eql(expected);
   }); //- test06
+
+  // test07
+  it('Should include an external *.jav file', function() {
+    var compile = javelin.compile('./test/javelin/object/test07.jav', 'json');
+    var result = compile(locals);
+
+    result.should.eql(locals);
+  }); //- test07
 }); //- describe()
