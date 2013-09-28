@@ -179,8 +179,9 @@ beta progress
   * A basic, rudimentary implemention is included. Needs to be extended, though.
 * ~~Refactor how options are set~~
 * Command line compiler
-* Add pluralization/inflection for arrays/objects
 * Partials Support
+  * Include
+  * Extend
 * AST to XML builder
 
 
