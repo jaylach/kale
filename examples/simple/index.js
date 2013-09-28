@@ -15,7 +15,7 @@ var locals = {
   ]
 };
 
-var compile = javelin.compile('simple.jav', 'json');
+var compile = javelin.compileFile('simple.jav', 'json');
 
 var ast = compile(locals, true);
 //console.log(ast);
