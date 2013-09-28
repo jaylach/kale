@@ -199,6 +199,7 @@ beta progress
   * ~~Array building~~
 * ~~Inline Javascript implementation~~ (Stability: 1 - Experimental)
 * ~~Refactor how options are set~~
+* View Caching
 * Command line compiler
 * Partials Support
   * ~~Include~~ (Stability: 1 - Experimental)
