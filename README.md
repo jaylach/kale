@@ -53,7 +53,7 @@ var locals = {
 };
 
 // Get a json-based compiler for our *.jav file
-var compile = javelin.compile('/path/to/index.jav', 'json');
+var compile = javelin.compileFile('/path/to/index.jav', 'json');
 
 // Do our actual compelation
 var result = compile(locals);
