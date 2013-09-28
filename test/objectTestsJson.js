@@ -27,24 +27,21 @@ describe('Object Tests (JSON)', function() {
 
   // test01
   it('Should deep copy local object to output', function() {
-    var compile = javelin.compileFile('./test/javelin/object/test01.jav', 'json');
-    var result = compile(locals);
+    var result = javelin.renderFileSync('./test/javelin/object/test01.jav', 'json', locals);
     
     result.should.eql({ "foo": locals.foo });
   }); //- test01
  
   // test02
   it('Should deep copy local object to output, unnamed', function() {
-    var compile = javelin.compileFile('./test/javelin/object/test02.jav', 'json');
-    var result = compile(locals);
+    var result = javelin.renderFileSync('./test/javelin/object/test02.jav', 'json', locals);
     
     result.should.eql(locals.foo);
   }); //- test02
 
   // test03
   it('Should only copy explicit properties to output', function() {
-    var compile = javelin.compileFile('./test/javelin/object/test03.jav', 'json');
-    var result = compile(locals);
+    var result = javelin.renderFileSync('./test/javelin/object/test03.jav', 'json', locals);
     
     var expected = {
       "foo": {
@@ -57,8 +54,7 @@ describe('Object Tests (JSON)', function() {
 
   // test04
   it('Should only rename properties on output', function() {
-    var compile = javelin.compileFile('./test/javelin/object/test04.jav', 'json');
-    var result = compile(locals);
+    var result = javelin.renderFileSync('./test/javelin/object/test04.jav', 'json', locals);
     
     var expected = {
       "bar": {
@@ -72,8 +68,7 @@ describe('Object Tests (JSON)', function() {
 
   // test05
   it('Should correctly copy sub objects', function() {
-    var compile = javelin.compileFile('./test/javelin/object/test05.jav', 'json');
-    var result = compile(locals);
+    var result = javelin.renderFileSync('./test/javelin/object/test05.jav', 'json', locals);
     
     var expected = {
       "foo": {
@@ -95,8 +90,7 @@ describe('Object Tests (JSON)', function() {
 
   // test06
   it('Should execute inline script and set returned value', function() {
-    var compile = javelin.compileFile('./test/javelin/object/test06.jav', 'json');
-    var result = compile(locals);
+    var result = javelin.renderFileSync('./test/javelin/object/test06.jav', 'json', locals);
     
     var expected = {
       "foo": {
@@ -111,8 +105,7 @@ describe('Object Tests (JSON)', function() {
 
   // test07
   it('Should include an external *.jav file', function() {
-    var compile = javelin.compileFile('./test/javelin/object/test07.jav', 'json');
-    var result = compile(locals);
+    var result = javelin.renderFileSync('./test/javelin/object/test07.jav', 'json', locals);
 
     result.should.eql(locals);
   }); //- test07

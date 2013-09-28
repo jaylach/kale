@@ -1,7 +1,7 @@
 {
   "name": "javelin",
   "description": "Javascript API View Expression Language",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "stability": "alpha",
   "main": "index.js",
   "keywords": [

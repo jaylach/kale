@@ -19,24 +19,20 @@ describe('Array Tests (JSON)', function() {
 
   // test01
   it('Should deep copy local array to output', function() {
-    var compile = javelin.compileFile('./test/javelin/array/test01.jav', 'json');
-    var result = compile(locals);
+    var result = javelin.renderFileSync('./test/javelin/array/test01.jav', 'json', locals);
     result.should.eql(locals);
   }); //- test01
 
   // test02
   it('Should not allow unnamed arrays', function() {
-    var compile = javelin.compileFile('./test/javelin/array/test02.jav', 'json');
-
     (function() {
-      var result = compile(locals);
+      var result = javelin.renderFileSync('./test/javelin/array/test02.jav', 'json', locals);
     }).should.throw();
   }); //- test02
 
   // test03
   it('Should only copy explicit properties to output', function() {
-    var compile = javelin.compileFile('./test/javelin/array/test03.jav', 'json');
-    var result = compile(locals);
+    var result = javelin.renderFileSync('./test/javelin/array/test03.jav', 'json', locals);
     
     var expected = {
       "foos": [
@@ -50,8 +46,6 @@ describe('Array Tests (JSON)', function() {
 
   // test04
   it('Should support full embedded object syntax', function() {
-    var compile = javelin.compileFile('./test/javelin/array/test04.jav', 'json');
-
     // Create a new set of locals for this test only
     var newLocals = {
       "foos": [
@@ -93,14 +87,13 @@ describe('Array Tests (JSON)', function() {
       ]
     };
 
-    var result = compile(newLocals);
+    var result = javelin.renderFileSync('./test/javelin/array/test04.jav', 'json', newLocals);
     result.should.eql(expected);
   }); //- test04
 
   // test05
   it('Should execute inline script and set returned value', function() {
-    var compile = javelin.compileFile('./test/javelin/array/test05.jav', 'json');
-    var result = compile(locals);
+    var result = javelin.renderFileSync('./test/javelin/array/test05.jav', 'json', locals);
     
     var expected = {
       "foos": [
