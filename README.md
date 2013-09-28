@@ -207,8 +207,6 @@ beta progress
   * ~~set keyword~~
   * ~~action configuration~~
   * ~~comments~~
-  * ~~inline javascript~~
-  * object accessors (i.e: @foo.bar and foo['bar'])
   * map, reduce, etc...
 * ~~Parser to AST structure~~ [![unstable](http://hughsk.github.io/stability-badges/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
 * ~~AST to JSON builder~~ [![unstable](http://hughsk.github.io/stability-badges/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
@@ -221,7 +219,7 @@ beta progress
 * Partials Support [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
   * ~~Include~~
   * Extend
-
+* Javascript helper functions (top-level script)
 
 And...
 
