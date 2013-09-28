@@ -3,9 +3,7 @@ object @foo {
 
   set .bar, .qux
 
-  object .inner
-  array @outerObject {
-    .'1' => 'one'
-    .'2' => 'two'
+  object .inner {
+    include '../includes/outerArray'
   }
 }

@@ -9,7 +9,7 @@ var locals = {
       "two": "2"
     }
   },
-  "outerObject": [
+  "outerArray": [
     { "1": "one", "2": "two" },
     { "1": "three", "2": "four" }
   ]
