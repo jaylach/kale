@@ -32,6 +32,11 @@ ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
   return 'STRING'
 %}
 
+"\""(?:"\\"(?:.)|[^'\\])*"\"" %{
+  yytext = yytext.substr(1, yyleng - 2);
+  return 'STRING'
+%}
+
 
 \s+             { /* skip whitespace */ }
 "object"        { return 'OBJECT'; }
