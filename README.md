@@ -181,6 +181,22 @@ object @app_user => 'user' {
 }
 ```
 
+An express3 middleware is provided so that you can easily render javelin views from within your express routes. 
+The examples/express folder has a more complete example, but this is the basics you need to get started...
+
+```
+var javelin = require('javelin');
+
+app.engine('jav', javelin.express('json'));
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jav');
+
+app.get('/javelin', function(request, response) {
+  response.render('index', { /* locals */ });
+});
+```
+
 beta progress
 -------------
 * ~~Jison based lexer~~
