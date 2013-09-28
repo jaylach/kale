@@ -20,6 +20,7 @@
     "underscore": "~1.5.2"
   },
   "devDependencies": {
+    "express": "~3.4.0",
     "jison": "~0.4.13",
     "mocha": "*",
     "should": "*"
@@ -36,7 +37,7 @@
   },
   "author": "Jason LaChapelle <toys@codegrit.com>",
   "contributors": [
-      "Jason LaChapelle <toys@codegrit.com>"
+    "Jason LaChapelle <toys@codegrit.com>"
   ],
   "license": "MIT"
 }
