@@ -159,6 +159,29 @@ object @app_user => 'user' {
 }
 ```
 
+javelin also provides the ability to reuse views by allowing you to mixin existing views. This functionality is
+currently still in development so it should be considered expirmental. While I don't imagine the API will change 
+for it, I do expect to add a bunch more features to it.
+
+```
+# Inside includes/userGroups
+
+array .user_groups => 'groups' {
+  ._id => 'id'
+}
+```
+
+```
+object @app_user => 'user' {
+  -copy
+
+  # The set keyword can be omitted while inside an object or array
+  ._id => 'id', .uname => 'user_name'
+
+  include 'includes/userGroups'
+}
+```
+
 beta progress
 -------------
 * ~~Jison based lexer~~
