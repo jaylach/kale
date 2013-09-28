@@ -2,8 +2,6 @@
 
 overview
 --------
-_javelin is currently in an alpha, half complete, state_
-
 javelin is a view templating engine for your node.js based RESTful APIs. It allows you to 
 treat the data of your API as you would any other view. The gain here is that you can 
 separate your view logic from your controllers and models. javelin can compile to JSON and XML
@@ -15,6 +13,9 @@ javelin sets out with a few main goals in mind:
 * An easy, familiar, way to separate the view logic from your data within RESTful APIs
 * A simple, lightweight templating language that makes sense for application data
 * Ability to serve your API data in different formats from the same view
+
+Please note that javelin is currently in an _alpha_ state. Most features are somewhere between Stability 1
+(Experimental) and Stability 2 (Unstable).
 
 installation
 ------------
