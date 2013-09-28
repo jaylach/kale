@@ -210,17 +210,17 @@ beta progress
   * ~~inline javascript~~
   * object accessors (i.e: @foo.bar and foo['bar'])
   * map, reduce, etc...
-* ~~Parser to AST structure~~
-* ~~AST to JSON builder~~ (Stability: 2 - Unstable)
+* ~~Parser to AST structure~~ [![stable](http://hughsk.github.io/stability-badges/dist/stable.svg)](http://github.com/hughsk/stability-badges)
+* ~~AST to JSON builder~~ [![unstable](http://hughsk.github.io/stability-badges/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
   * ~~Object building~~
   * ~~Array building~~
-* ~~Inline Javascript implementation~~ (Stability: 1 - Experimental)
+* ~~Inline Javascript implementation~~ [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
 * ~~Refactor how options are set~~
-* ~~View Caching~~
+* ~~View Caching~~ [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
   * View AST is cached, in memory, based on fileName.
 * Command line compiler
 * Partials Support
-  * ~~Include~~ (Stability: 1 - Experimental)
+  * ~~Include~~ [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
   * Extend
 * AST to XML builder
 
