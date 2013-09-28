@@ -201,7 +201,7 @@ app.get('/javelin', function(request, response) {
 beta progress
 -------------
 * ~~Jison based lexer~~
-* ~~Jison based grammar~~
+* [![unstable](http://hughsk.github.io/stability-badges/dist/unstable.svg)](http://github.com/hughsk/stability-badges) ~~Jison based grammar~~
   * ~~object keyword~~
   * ~~array keyword~~
   * ~~set keyword~~
@@ -210,17 +210,17 @@ beta progress
   * ~~inline javascript~~
   * object accessors (i.e: @foo.bar and foo['bar'])
   * map, reduce, etc...
-* ~~Parser to AST structure~~ [![stable](http://hughsk.github.io/stability-badges/dist/stable.svg)](http://github.com/hughsk/stability-badges)
-* ~~AST to JSON builder~~ [![unstable](http://hughsk.github.io/stability-badges/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
+* [![unstable](http://hughsk.github.io/stability-badges/dist/unstable.svg)](http://github.com/hughsk/stability-badges) ~~Parser to AST structure~~ 
+* [![unstable](http://hughsk.github.io/stability-badges/dist/unstable.svg)](http://github.com/hughsk/stability-badges) ~~AST to JSON builder~~
   * ~~Object building~~
   * ~~Array building~~
-* ~~Inline Javascript implementation~~ [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
+* [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges) ~~Inline Javascript implementation~~ 
 * ~~Refactor how options are set~~
-* ~~View Caching~~ [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
+* [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges) ~~View Caching~~ 
   * View AST is cached, in memory, based on fileName.
 * Command line compiler
 * Partials Support
-  * ~~Include~~ [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
+  * [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges) ~~Include~~ 
   * Extend
 * AST to XML builder
 
