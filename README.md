@@ -56,8 +56,9 @@ var locals = {
 };
 
 // Do our actual compelation
-javelin.renderFile('/path/to/index.jav', 'json', locals, function(error, result) {
-  console.log(result);  
+var compile = javelin.compileFile('/path/to/index.jav', { /* options */ });
+compile('json', locals, function(error, result) {
+  console.log(JSON.stringify(result));
 });
 ```
 
