@@ -15,6 +15,7 @@ var locals = {
   ]
 };
 
-javelin.renderFile('simple.jav', 'json', locals, function(error, result) {
+var compile = javelin.compileFile('simple.jav');
+compile('json', locals, function(error, result) {
   console.log(JSON.stringify(result));
 });
