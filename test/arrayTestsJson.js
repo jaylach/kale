@@ -19,21 +19,25 @@ describe('Array Tests (JSON)', function() {
 
   // test01
   it('Should deep copy local array to output', function() {
-    var result = javelin.renderFileSync('./test/javelin/array/test01.jav', 'json', locals);
+    var compile = javelin.compileFileSync('./test/javelin/array/test01.jav');
+    var result = compile('json', locals);
+    
     result.should.eql(locals);
   }); //- test01
 
   // test02
   it('Should not allow unnamed arrays', function() {
     (function() {
-      var result = javelin.renderFileSync('./test/javelin/array/test02.jav', 'json', locals);
+      var compile = javelin.compileFileSync('./test/javelin/array/test02.jav');
+      var result = compile('json', locals);
     }).should.throw();
   }); //- test02
 
   // test03
   it('Should only copy explicit properties to output', function() {
-    var result = javelin.renderFileSync('./test/javelin/array/test03.jav', 'json', locals);
-    
+    var compile = javelin.compileFileSync('./test/javelin/array/test03.jav');
+    var result = compile('json', locals);
+
     var expected = {
       "foos": [
         { "1": "1" },
@@ -67,6 +71,9 @@ describe('Array Tests (JSON)', function() {
       ]
     };
 
+    var compile = javelin.compileFileSync('./test/javelin/array/test04.jav');
+    var result = compile('json', newLocals);
+
     // Expected
     var expected = {
       "foos": [
@@ -87,13 +94,13 @@ describe('Array Tests (JSON)', function() {
       ]
     };
 
-    var result = javelin.renderFileSync('./test/javelin/array/test04.jav', 'json', newLocals);
     result.should.eql(expected);
   }); //- test04
 
   // test05
   it('Should execute inline script and set returned value', function() {
-    var result = javelin.renderFileSync('./test/javelin/array/test05.jav', 'json', locals);
+    var compile = javelin.compileFileSync('./test/javelin/array/test05.jav');
+    var result = compile('json', locals);
     
     var expected = {
       "foos": [
@@ -104,4 +111,20 @@ describe('Array Tests (JSON)', function() {
 
     result.should.eql(expected);
   }); //- test05
+
+  // test05 - async
+  it('Should compile an array-based template asynchronously', function(done) {
+    var compile = javelin.compileFile('./test/javelin/array/test05.jav');
+    compile('json', locals, function(error, result) {
+      var expected = {
+        "foos": [
+          { "one": 2, "two": 6 },
+          { "one": 6, "two": 12 }
+        ]
+      };
+
+      result.should.eql(expected);
+      done();
+    });
+  }); //- test05 - async
 }); //- describe()
