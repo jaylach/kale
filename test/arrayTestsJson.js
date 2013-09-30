@@ -1,7 +1,7 @@
 var should = require('should');
 var _ = require('underscore');
 
-var javelin = require('../index');
+var kale = require('../index');
 
 // -----
 //  Array Tests
@@ -19,7 +19,7 @@ describe('Array Tests (JSON)', function() {
 
   // test01
   it('Should deep copy local array to output', function() {
-    var compile = javelin.compileFileSync('./test/javelin/array/test01.jav');
+    var compile = kale.compileFileSync('./test/kale/array/test01.jav');
     var result = compile('json', locals);
     
     result.should.eql(locals);
@@ -28,14 +28,14 @@ describe('Array Tests (JSON)', function() {
   // test02
   it('Should not allow unnamed arrays', function() {
     (function() {
-      var compile = javelin.compileFileSync('./test/javelin/array/test02.jav');
+      var compile = kale.compileFileSync('./test/kale/array/test02.jav');
       var result = compile('json', locals);
     }).should.throw();
   }); //- test02
 
   // test03
   it('Should only copy explicit properties to output', function() {
-    var compile = javelin.compileFileSync('./test/javelin/array/test03.jav');
+    var compile = kale.compileFileSync('./test/kale/array/test03.jav');
     var result = compile('json', locals);
 
     var expected = {
@@ -71,7 +71,7 @@ describe('Array Tests (JSON)', function() {
       ]
     };
 
-    var compile = javelin.compileFileSync('./test/javelin/array/test04.jav');
+    var compile = kale.compileFileSync('./test/kale/array/test04.jav');
     var result = compile('json', newLocals);
 
     // Expected
@@ -99,7 +99,7 @@ describe('Array Tests (JSON)', function() {
 
   // test05
   it('Should execute inline script and set returned value', function() {
-    var compile = javelin.compileFileSync('./test/javelin/array/test05.jav');
+    var compile = kale.compileFileSync('./test/kale/array/test05.jav');
     var result = compile('json', locals);
     
     var expected = {
@@ -114,7 +114,7 @@ describe('Array Tests (JSON)', function() {
 
   // test05 - async
   it('Should compile an array-based template asynchronously', function(done) {
-    var compile = javelin.compileFile('./test/javelin/array/test05.jav');
+    var compile = kale.compileFile('./test/kale/array/test05.jav');
     compile('json', locals, function(error, result) {
       var expected = {
         "foos": [

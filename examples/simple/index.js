@@ -1,4 +1,4 @@
-var javelin = require('../../index');
+var kale = require('../../index');
 
 var locals = {
   "foo": {
@@ -15,7 +15,7 @@ var locals = {
   ]
 };
 
-var compile = javelin.compileFile('simple.jav');
+var compile = kale.compileFile('simple.jav');
 compile('json', locals, function(error, result) {
   console.log(JSON.stringify(result));
 });

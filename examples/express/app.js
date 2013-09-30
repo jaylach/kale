@@ -1,8 +1,8 @@
 var express = require('express');
-var javelin = require('../../index');
+var kale = require('../../index');
 
 var app = express();
-app.engine('jav', javelin.express('json'));
+app.engine('jav', kale.express('json'));
 
 app.set('view engine', 'jav');
 app.set('views', __dirname + '/views');

@@ -1,26 +1,26 @@
-[![Build Status](https://travis-ci.org/jaylach/javelin.png?branch=master)](https://travis-ci.org/jaylach/javelin)
+[![Build Status](https://travis-ci.org/jaylach/kale.png?branch=master)](https://travis-ci.org/jaylach/kale)
 
 overview
 --------
-javelin is a view templating engine for your node.js based RESTful APIs. It allows you to 
+kale is a view templating engine for your node.js based RESTful APIs. It allows you to 
 treat the data of your API as you would any other view. The gain here is that you can 
-separate your view logic from your controllers and models. javelin can compile to JSON and XML
+separate your view logic from your controllers and models. kale can compile to JSON and XML
 natively but other builders can be plugged in to allow compiling to any other format. The syntax 
-of javelin is inspired by the Ruby gem known as [rabl](https://github.com/nesquena/rabl).
+of kale is inspired by the Ruby gem known as [rabl](https://github.com/nesquena/rabl).
 
-javelin sets out with a few main goals in mind:
+kale sets out with a few main goals in mind:
 
 * An easy, familiar, way to separate the view logic from your data within RESTful APIs
 * A simple, lightweight templating language that makes sense for application data
 * Ability to serve your API data in different formats from the same view
 
-Please note that javelin is currently in an _alpha_ state. Most features are somewhere between Stability 1
+Please note that kale is currently in an _alpha_ state. Most features are somewhere between Stability 1
 (Experimental) and Stability 2 (Unstable).
 
 installation
 ------------
 ```
-npm install javelin
+npm install kale
 ```
 
 usage
@@ -41,7 +41,7 @@ object @test {
 
 Inside our `index.js` file...
 ```javascript
-var javelin = require('javelin');
+var kale = require('kale');
 
 var locals = {
   test: {
@@ -56,7 +56,7 @@ var locals = {
 };
 
 // Do our actual compelation
-var compile = javelin.compileFile('/path/to/index.jav', { /* options */ });
+var compile = kale.compileFile('/path/to/index.jav', { /* options */ });
 compile('json', locals, function(error, result) {
   console.log(JSON.stringify(result));
 });
@@ -161,7 +161,7 @@ object @app_user => 'user' {
 }
 ```
 
-javelin also provides the ability to reuse views by allowing you to mixin existing views. This functionality is
+kale also provides the ability to reuse views by allowing you to mixin existing views. This functionality is
 currently still in development so it should be considered expirmental. While I don't imagine the API will change 
 for it, I do expect to add a bunch more features to it.
 
@@ -183,18 +183,18 @@ object @app_user => 'user' {
 }
 ```
 
-An express3 middleware is provided so that you can easily render javelin views from within your express routes. 
+An express3 middleware is provided so that you can easily render kale views from within your express routes. 
 The examples/express folder has a more complete example, but this is the basics you need to get started...
 
 ```
-var javelin = require('javelin');
+var kale = require('kale');
 
-app.engine('jav', javelin.express('json'));
+app.engine('jav', kale.express('json'));
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jav');
 
-app.get('/javelin', function(request, response) {
+app.get('/kale', function(request, response) {
   response.render('index', { /* locals */ });
 });
 ```
