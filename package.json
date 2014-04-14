@@ -24,7 +24,9 @@
     "should": "~3.3.0"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "gen-parser": "make parser",
+    "prepublish": "make parser"
   },
   "homepage": "https://github.com/jaylach/kale",
   "bugs": "https://github.com/jaylach/kale/issues",

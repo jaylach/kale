@@ -6,4 +6,7 @@ test:
 		--reporter $(MOCHA_REPORTER) \
 		$(MOCHA_OPTS)
 
+parser:
+	./node_modules/.bin/jison src/grammar.jison src/lexer.jisonlex -o lib/parser.js -p lalr
+
 .PHONY: test
