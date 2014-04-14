@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/jaylach/kale.png?branch=master)](https://travis-ci.org/jaylach/kale)
-
 overview
 --------
 kale is a view templating engine for your node.js based RESTful APIs. It allows you to 
