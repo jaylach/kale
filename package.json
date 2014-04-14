@@ -1,8 +1,8 @@
 {
   "name": "kale",
   "description": "A view templating language for your RESTful APIs.",
-  "version": "0.2.0",
-  "stability": "beta",
+  "version": "0.3.0",
+  "stability": "alpha",
   "main": "index.js",
   "keywords": [
     "api",
@@ -16,25 +16,19 @@
     "node": ">= 0.8"
   },
   "dependencies": {
-    "assert-plus": "~0.1.4",
-    "underscore": "~1.5.2"
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
-    "express": "~3.4.0",
     "jison": "~0.4.13",
-    "mocha": "*",
-    "should": "*"
+    "mocha": "~1.18.2",
+    "should": "~3.3.0"
   },
   "scripts": {
-    "test": "make test",
-    "prepublish": "./node_modules/.bin/jison lib/grammar.y ./lib/lexer.l -o lib/parser.js -p lalr"
+    "test": "make test"
   },
   "homepage": "https://github.com/jaylach/kale",
   "bugs": "https://github.com/jaylach/kale/issues",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jaylach/kale.git"
-  },
+  "repository": "https://github.com/jaylach/kale.git",
   "author": "Jason LaChapelle <toys@codegrit.com>",
   "contributors": [
     "Jason LaChapelle <toys@codegrit.com>"
