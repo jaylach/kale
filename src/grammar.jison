@@ -1,5 +1,7 @@
 %start Template
 
+%left SCRIPT
+
 %%
 
 /* 
@@ -19,6 +21,7 @@ TemplateElement
   : NodeExpression
   | NodeBlock
   | CustomNodeBlock
+  | COMMENT
   ;
 
 TemplateElements
@@ -26,16 +29,21 @@ TemplateElements
   | TemplateElements TemplateElement
   ;
 
+CustomNodeElements
+  : TemplateElements
+  | RETURN SCRIPT
+  ;
+
 /*
  * Nodes
  */
 
 NodeExpression
-  : NodeType NodeLookups
+  : NodeType NodeAttributeLookups
   ;
 
 NodeBlockExpression
-  : BlockNodeType NodeLookup
+  : BlockNodeType NodeAttributeLookup
   ;
 
 NodeBlock
@@ -44,15 +52,14 @@ NodeBlock
   ;
 
 CustomNodeBlockExpression
-  : BlockNodeType IDENTIFIER AS
-  | BlockNodeType STRING AS
-  | NodeType IDENTIFIER AS
-  | NodeType STRING AS
+  : BlockNodeType IDENTIFIER
+  | NodeType IDENTIFIER
   ;
 
 CustomNodeBlock
-  : CustomNodeBlockExpression END
-  | CustomNodeBlockExpression TemplateElements END
+  : CustomNodeBlockExpression AS END
+  | CustomNodeBlockExpression AS SCRIPT_PARAM SCRIPT
+  | CustomNodeBlockExpression AS CustomNodeElements END
   ;
 
 NodeLookup
@@ -67,6 +74,33 @@ NodeLookup
 NodeLookups
   : NodeLookup
   | NodeLookups COMMA NodeLookup
+  ;
+
+NodeAttributeLookup
+  : NodeLookup
+  | NodeLookup NodeAttributeExpression
+  ;
+
+NodeAttributeLookups
+  : NodeAttributeLookup
+  | NodeAttributeLookups COMMA NodeAttributeLookup
+  ;
+
+/*
+ *  Attributes
+ */
+
+NodeAttributeSetter
+  : ATTRIBUTE EQUALS STRING
+  ;
+
+NodeAttributeSetters
+  : NodeAttributeSetter
+  | NodeAttributeSetters COMMA NodeAttributeSetter
+  ;
+
+NodeAttributeExpression
+  : OPEN_PARENTHESE NodeAttributeSetters CLOSE_PARENTHESE
   ;
 
 /*
