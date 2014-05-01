@@ -1,5 +1,6 @@
 ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
 script_param    ^\(([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?\)
+script_block    ^"%{"(.|\r|\n)*?"}%"|^"#{"(.|\r|\n)*?"}#"|^"|"(.|\r|\n)*?"|"
 
 %s js
 %s attr
@@ -16,10 +17,16 @@ script_param    ^\(([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?\)
   return 'COMMENT';
 %}
 
-<js>(.|\n|\r)*?"end" %{ 
+<js>{script_block} %{ 
   this.popState();
   
-  yytext = yytext.substr(0, yyleng - 3).trim();
+  if ( yytext.indexOf('|') === 0 ) {
+    yytext = yytext.substr(1, yyleng - 2).trim();
+  }
+  else {
+    yytext = yytext.substr(2, yyleng - 4).trim();
+  }
+  
   return 'SCRIPT';
 %}
 

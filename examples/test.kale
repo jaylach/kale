@@ -5,18 +5,20 @@ object @model
   -- Include the users array
   array users
     property id(name="user_id"), name
-    property full_name as (u)
-      return u.first_name + ' ' + u.last_name;
+    property full_name as 
+      first_name + ' ' + last_name
     end
 
-    property test as (u) 
-      var helper = function() {
-        return 'someValue';
-      };
+    property test as 
+      (u) %{
+        var helper = function() {
+          return 'someValue';
+        };
 
-      return {
-        some: helper()
-      };
+        return {
+          some: helper()
+        };
+      }%
     end
   end
   

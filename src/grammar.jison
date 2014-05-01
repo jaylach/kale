@@ -58,7 +58,7 @@ CustomNodeBlockExpression
 
 CustomNodeBlock
   : CustomNodeBlockExpression AS END
-  | CustomNodeBlockExpression AS SCRIPT_PARAM SCRIPT
+  | CustomNodeBlockExpression AS SCRIPT_PARAM SCRIPT END
   | CustomNodeBlockExpression AS CustomNodeElements END
   ;
 
