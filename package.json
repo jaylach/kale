@@ -24,9 +24,9 @@
     "should": "~3.3.0"
   },
   "scripts": {
-    "test": "make test",
-    "gen-parser": "make parser",
-    "prepublish": "make parser"
+    "test": "",
+    "gen-parser": "./node_modules/.bin/jison src/grammar.jison src/tokens.jisonlex -o lib/parser.js -p lalr",
+    "prepublish": "npm run gen-parser"
   },
   "homepage": "https://github.com/jaylach/kale",
   "bugs": "https://github.com/jaylach/kale/issues",
