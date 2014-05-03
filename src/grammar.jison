@@ -1,117 +1,93 @@
-%start Template
+/* Operator Precedence */
+%left OR
+%left AND
+%left '<' '>' '<=' '>=' '!=' '=='
+%left '+' '-'
+%left '*' '/' '%'
 
-%left SCRIPT
+%start template
 
 %%
 
+template
+  : block_node_expression EOF
+  ;
+
+expressions
+  : expression
+  | expressions expression
+  ;
+
+expression
+  : block_node_expression
+  | leaf_node_expression
+  ;
+
 /* 
- *  Root 
- */
-
-Template
-  : 
-  | TemplateElements EOF
+    Node Blocks 
+*/
+block_node_expression
+  : block_node_type node_attribute_lookups END
+  | block_node_type node_attribute_lookups expressions END
   ;
 
-/*
- *  TemplateElements
- */
-
-TemplateElement
-  : NodeExpression
-  | NodeBlock
-  | CustomNodeBlock
-  | COMMENT
+leaf_node_expression
+  : leaf_node_type node_attribute_lookups 
   ;
 
-TemplateElements
-  : TemplateElement
-  | TemplateElements TemplateElement
+/* 
+    Node Lookups 
+*/
+node_attribute_lookups
+  : node_attribute_lookup
+  | node_attribute_lookups COMMA node_attribute_lookup
   ;
 
-CustomNodeElements
-  : TemplateElements
-  | RETURN SCRIPT
+node_attribute_lookup
+  : node_lookup
+  | node_lookup node_attribute_statement
   ;
 
-/*
- * Nodes
- */
-
-NodeExpression
-  : NodeType NodeAttributeLookups
+node_lookup
+  : global_node_lookup
+  | local_node_lookup
   ;
 
-NodeBlockExpression
-  : BlockNodeType NodeAttributeLookup
+global_node_lookup
+  : GLOBAL_GLYPH local_node_lookup
   ;
 
-NodeBlock
-  : NodeBlockExpression END
-  | NodeBlockExpression TemplateElements END
-  ;
-
-CustomNodeBlockExpression
-  : BlockNodeType IDENTIFIER
-  | NodeType IDENTIFIER
-  ;
-
-CustomNodeBlock
-  : CustomNodeBlockExpression AS END
-  | CustomNodeBlockExpression AS SCRIPT_PARAM SCRIPT END
-  | CustomNodeBlockExpression AS CustomNodeElements END
-  ;
-
-NodeLookup
+local_node_lookup
   : IDENTIFIER
-  | STRING
-  | GLOBAL_GLYPH IDENTIFIER
-  | GLOBAL_GLYPH STRING
-  | NodeLookup DOT IDENTIFIER
-  | NodeLookup OPEN_BRACKET STRING CLOSE_BRACKET
+  | OPEN_BRACKET STRING CLOSE_BRACKET
+  | local_node_lookup DOT IDENTIFIER
+  | local_node_lookup OPEN_BRACKET STRING CLOSE_BRACKET
   ;
 
-NodeLookups
-  : NodeLookup
-  | NodeLookups COMMA NodeLookup
+/* 
+    Node Attributes 
+*/
+node_attribute_statement
+  : OPEN_PARENTHESE node_attribute_setters CLOSE_PARENTHESE
   ;
 
-NodeAttributeLookup
-  : NodeLookup
-  | NodeLookup NodeAttributeExpression
+node_attribute_setters
+  : node_attribute_setter
+  | node_attribute_setters COMMA node_attribute_setter
   ;
 
-NodeAttributeLookups
-  : NodeAttributeLookup
-  | NodeAttributeLookups COMMA NodeAttributeLookup
+node_attribute_setter 
+  : ATTRIBUTE ASSIGN STRING
   ;
 
-/*
- *  Attributes
- */
-
-NodeAttributeSetter
-  : ATTRIBUTE EQUALS STRING
-  ;
-
-NodeAttributeSetters
-  : NodeAttributeSetter
-  | NodeAttributeSetters COMMA NodeAttributeSetter
-  ;
-
-NodeAttributeExpression
-  : OPEN_PARENTHESE NodeAttributeSetters CLOSE_PARENTHESE
-  ;
-
-/*
- *  Keywords
- */
-
-BlockNodeType
+/* 
+    Node Types 
+*/
+block_node_type
   : OBJECT
   | ARRAY
   ;
 
-NodeType
+leaf_node_type
   : PROPERTY
   ;
