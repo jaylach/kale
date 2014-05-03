@@ -1,34 +1,7 @@
 object @model
-  -- Include the properties foo and baz, renaming baz to bar
-  property foo, baz(name="bar")
-  
-  -- Include the users array
-  array users
-    property id(name="user_id"), name
-    property full_name as 
-      first_name + ' ' + last_name
-    end
+  property ["some key"]
 
-    property test as 
-      (u) %{
-        var helper = function() {
-          return 'someValue';
-        };
+  array key
 
-        return {
-          some: helper()
-        };
-      }%
-    end
-  end
-  
-  -- Include the object some_object, using properties 'one' and 'two'
-  object some_object
-    property one, two
-  end
-  
-  -- Include a custom object
-  object custom as
-    property c.one, c.two
   end
 end
