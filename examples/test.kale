@@ -1,7 +1,0 @@
-object @model
-  property ["some key"]
-
-  array key
-
-  end
-end
