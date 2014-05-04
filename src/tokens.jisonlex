@@ -1,5 +1,8 @@
 ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
 number          ^(\d*\.?\d+)(?:"e"[+-]?\d+)?
+glyph           [@+\-*/%^<>=(){}\[\]:,.] 
+
+%s as
 
 %%
 
@@ -21,14 +24,23 @@ number          ^(\d*\.?\d+)(?:"e"[+-]?\d+)?
 "property"      { return 'PROPERTY'; }
 "prop"          { return 'PROPERTY'; }
 "array"         { return 'ARRAY'; }
-"as"            { return 'AS'; }
+"as"            { this.begin('as'); return 'AS'; }
 "if"            { return 'IF'; }
 "then"          { return 'THEN'; }
-"elseif"        { return 'ELSE_IF'; }
-"return"        { return 'RETURN'; }
+"elseif"        { return 'ELSEIF'; }
+"else"          { return 'ELSE'; }
+<as>"return"    { return 'RETURN'; }
 "end"           { return 'END'; }
-{number}        { return 'NUMBER'; }
-{ident}         { return 'IDENTIFIER'; } 
+"true"          { return 'TRUE'; }
+"false"         { return 'FALSE'; }
+"null"          { return 'NULL'; }
+
+/* Glyphs */
+{glyph}         { return yytext; }
+"<="            { return '<='; }
+">="            { return '>='; }
+"=="            { return '=='; }
+"!="            { return '!='; }
 
 /* Operators */
 "and"           { return 'AND'; }
@@ -41,13 +53,7 @@ number          ^(\d*\.?\d+)(?:"e"[+-]?\d+)?
 /* Attributes */
 "key"           { return 'ATTRIBUTE'; }
 
-/* Glyphs */
-"@"             { return 'GLOBAL_GLYPH'; }
-"."             { return 'DOT'; }
-","             { return 'COMMA'; }
-"="             { return 'ASSIGN'; }
-"["             { return 'OPEN_BRACKET'; }
-"]"             { return 'CLOSE_BRACKET'; }
-"("             { return 'OPEN_PARENTHESE'; }
-")"             { return 'CLOSE_PARENTHESE'; }
+/* General */
+{number}        { return 'NUMBER'; }
+{ident}         { return 'IDENTIFIER'; } 
 <<EOF>>         { return 'EOF'; }
