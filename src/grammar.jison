@@ -208,9 +208,9 @@ expression
       $$ = $2; 
     }
   | expression '==' expression
-    { $$ = new yy.Operation($2, $1, $3); }
+    { $$ = new yy.Operation('==', $1, $3); }
   | expression '!=' expression
-    { $$ = new yy.Operation($2, $1, $3); }
+    { $$ = new yy.Operation('!=', $1, $3); }
   | expression '+' expression
     { $$ = new yy.Operation($2, $1, $3); }
   | expression '-' expression

@@ -38,7 +38,9 @@ glyph           [@+\-*/%^<>=(){}\[\]:,.]
 /* Glyphs */
 "<="            { return '<='; }
 ">="            { return '>='; }
+"is"            { return '=='; }
 "=="            { return '=='; }
+"isnt"          { return '!='; }
 "!="            { return '!='; }
 {glyph}         { return yytext; }
 
