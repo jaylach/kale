@@ -13,7 +13,7 @@
 %%
 
 template
-  : block_node_statement EOF
+  : first_statement EOF
     {
       $$ = new yy.Template($1);
       return $$;
@@ -49,6 +49,11 @@ statement
     { $$ = new yy.Comment($1); }
   ;
 
+first_statement
+  : block_node_statement
+  | COMMENT
+  ;
+
 last_statement
   : RETURN expression
     { $$ = new yy.Return($2); }
@@ -68,7 +73,12 @@ block_node_statement
       var outKey = $2.getOutKey();
       delete $2['attributes'];
 
-      $$ = new yy.NodeBlock($1, $2, outKey, $3);
+      if ( $1 === 'object' ) {
+        $$ = new yy.ObjectBlock($2, outKey, $3);
+      }
+      else if ( $1 === 'array' ) {
+        $$ = new yy.ArrayBlock($2, outKey, $3);
+      }
     }
   ;
 
@@ -146,6 +156,10 @@ attribute_setter_list
 attribute_setter 
   : ATTRIBUTE '=' STRING
     { $$ = new yy.Attribute($1, $3); }
+  | ATTRIBUTE '=' TRUE
+    { $$ = new yy.Attribute($1, true); }
+  | ATTRIBUTE '=' FALSE
+    { $$ = new yy.Attribute($1, false); }
   ;
 
 /*
@@ -208,9 +222,9 @@ expression
       $$ = $2; 
     }
   | expression '==' expression
-    { $$ = new yy.Operation('==', $1, $3); }
+    { $$ = new yy.Operation('===', $1, $3); }
   | expression '!=' expression
-    { $$ = new yy.Operation('!=', $1, $3); }
+    { $$ = new yy.Operation('!==', $1, $3); }
   | expression '+' expression
     { $$ = new yy.Operation($2, $1, $3); }
   | expression '-' expression

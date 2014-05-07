@@ -1,9 +1,5 @@
-object @user_profile(key="user")
-  if first_name != null then
-    property "full_name" as 
-      return first_name + ' ' + last_name
-    end
+object @user_profile
+  array tags
+    property label
   end
-
-  property foo: if not (foo != null) and true
 end
