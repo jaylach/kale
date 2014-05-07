@@ -36,11 +36,11 @@ glyph           [@+\-*/%^<>=(){}\[\]:,.]
 "null"          { return 'NULL'; }
 
 /* Glyphs */
-{glyph}         { return yytext; }
 "<="            { return '<='; }
 ">="            { return '>='; }
 "=="            { return '=='; }
 "!="            { return '!='; }
+{glyph}         { return yytext; }
 
 /* Operators */
 "and"           { return 'AND'; }
