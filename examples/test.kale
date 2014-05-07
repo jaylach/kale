@@ -1,14 +1,9 @@
-object @model
-  property "full_name" as
-    if ( first_name != null and last_name != null ) then
-      -- Concat first and last name, if we have both
+object @user_profile(key="user")
+  if first_name != null then
+    property "full_name" as 
       return first_name + ' ' + last_name
-    elseif ( first_name != null ) then
-      -- If we only have a first name, use that
-      return first_name
-    else
-      -- If we only have a last name, use that
-      return last_name
     end
   end
+
+  property foo: if not (foo != null) and true
 end
