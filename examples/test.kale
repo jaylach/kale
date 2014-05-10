@@ -1,5 +1,22 @@
 object @user_profile
+  -- Tags array
   array tags
-    property label
+    object $this
+      property "label" as 
+        return id + ': ' + label
+      end
+    end
   end
+
+  -- Location
+  object location
+    property street
+    property "geo" as
+      return city + ', ' + state + ' ' + postal
+    end
+  end
+end
+
+object @user(key=false)
+  property name(key="user_name")
 end
