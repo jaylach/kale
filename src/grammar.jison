@@ -13,7 +13,7 @@
 %%
 
 template
-  : first_statement EOF
+  : first_statement_list EOF
     {
       $$ = new yy.Template($1);
       return $$;
@@ -49,6 +49,16 @@ statement
     { $$ = new yy.Comment($1); }
   ;
 
+first_statement_list
+  : first_statement
+    { $$ = [ $1 ]; }
+  | first_statement_list first_statement
+    { 
+      $1.push($2);
+      $$ = $1;
+    }
+  ;
+
 first_statement
   : block_node_statement
   | COMMENT
@@ -63,8 +73,15 @@ last_statement
     Node Blocks 
 */
 custom_node_block_statement
-  : node_type_list STRING AS opt_statement_list END
-    { $$ = new yy.CustomProperty($2, $4); }
+  : leaf_node_type STRING AS opt_statement_list END
+    { 
+      switch ( $1 ) {
+        case 'property': {
+          $$ = new yy.CustomProperty($2, $4); 
+          break;
+        }
+      }
+    }
   ;
 
 block_node_statement
