@@ -1,0 +1,17 @@
+dataSource => {
+  id: {{dataSourceRow.id}},
+  sourceType: {{dataSourceRow.dtSrcType}},
+  currentInstanceId: 0,
+  ddList: {{domainDicsForDataSrc | @ddList}}
+} 
+
+ddList => {
+  ddId: {{ddEntry.id}},
+  name: {{ddEntry.name}},
+  sourceFieldId: {{sourceField.id}},
+  isKey: {{sourceField.isKey}},
+  optionsJson: {{sourceField.optionsJson}},
+  sortOrder: {{sourceField.sortOrder}},
+  noExist: {{ noExist.noExist["whatever guy"] }}
+} (sortBy: { prop: 'sortOrder', order: 'DESC' })
+

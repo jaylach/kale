@@ -16,11 +16,10 @@ kale sets out with a few main goals in mind:
 Please note that kale is currently in an _alpha_ state. Most features are somewhere between Stability 1
 (Experimental) and Stability 2 (Unstable).
 
-breaking changes
-----------------
-kale is undergoing a whole host of changes, from the actual kale language to the node api. It's basically 
-being rewritten from the ground up. All these changes will be in version 0.3.0, and will be released onto
-npm as beta for a while before the current version (0.2.0) is replaced.
+stay tuned
+----------
+I'll be filling out this README.md file in the coming days. Please stay tuned for more information, examples, 
+and, most importantly, tests! :)
 
 license
 -------
