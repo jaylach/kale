@@ -1,17 +1,20 @@
-dataSource => {
-  id: {{dataSourceRow.id}},
-  sourceType: {{dataSourceRow.dtSrcType}},
-  currentInstanceId: 0,
-  ddList: {{domainDicsForDataSrc | @ddList}}
-} 
+user => {
+  id: {{userId}},
+  userName: {{userName}},
+  firstName: {{firstName}},
+  homePhone: {{ phones | filter: { type: 'home' }, 
+                         first, 
+                         pluck: { prop: 'number' } }},
+  mobilePhone: {{ phones | filter: { type: 'mobile' }, 
+                           first, 
+                           pluck: { prop: 'number' } }},
+  address: {{ _ | @address }}
+}
 
-ddList => {
-  ddId: {{ddEntry.id}},
-  name: {{ddEntry.name}},
-  sourceFieldId: {{sourceField.id}},
-  isKey: {{sourceField.isKey}},
-  optionsJson: {{sourceField.optionsJson}},
-  sortOrder: {{sourceField.sortOrder}},
-  noExist: {{ noExist.noExist["whatever guy"] }}
-} (sortBy: { prop: 'sortOrder', order: 'DESC' })
+address => {
+  street: {{street1}},
+  city: {{city}},
+  state: {{state}},
+  zip: {{zipCode}}
+}
 

@@ -26,7 +26,6 @@ glyph           [+(){}\[\]|@:,.]
 '<='            { return '<='; }
 '&&'            { return '&&'; }
 '||'            { return '||' }
-'$item'         { return '$item'; }
 {glyph}         { return yytext; }
 
 /* General */
