@@ -21,6 +21,14 @@ stay tuned
 I'll be filling out this README.md file in the coming days. Please stay tuned for more information, examples, 
 and, most importantly, tests! :)
 
+in browser
+----------
+BROWSER BUILD IS CURRENTLY UGLY, AND SUPER ALPHA, BUT IT WORKS!
+
+Kale can be compiled to run inside a browser. This is done by calling `kale._getBrowserScript` with an array of files
+you want to compile. The template functions will be compiled and a string of the JavaScript will be returned to you. You
+can see an example of this, with a grunt task, in the `examples/grunt` folder. 
+
 license
 -------
 The MIT License (MIT)
