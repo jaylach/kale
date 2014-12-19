@@ -16,9 +16,11 @@
     "node": ">= 0.10.32"
   },
   "dependencies": {
+    "js-beautify": "^1.5.4",
     "lodash": "^2.4.1"
   },
   "devDependencies": {
+    "grunt": "^0.4.5",
     "jison": "^0.4.15",
     "mocha": "^2.0.1",
     "should": "^4.4.1"
