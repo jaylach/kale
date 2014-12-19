@@ -26,9 +26,9 @@ in browser
 BROWSER BUILD IS CURRENTLY UGLY, AND SUPER ALPHA, BUT IT WORKS!
 
 Kale can be compiled to run inside a browser. This is done by calling `kale._getBrowserScript` with an array of files
-you want to compile. This function also takes either `global` or `angular` as the second parameter. This defines how the
-file should be generated. If `global`, kale will be set to `window.kale`. If `angular`, an Angular module named "kale" will
-be generated and a service named "Kale" will be created.
+you want to compile. This function also takes either `"global"` or `"angular"` as the second parameter. This defines how the
+file should be generated. If `"global"`, kale will be set to `window.kale`. If `"angular"`, an Angular module named `kale` will
+be generated and a service named `Kale` will be created.
 
 The template functions will be compiled and a string of the JavaScript will be returned to you. It is currently your 
 responibility to write the final string to file. You can see an example of this, with a grunt task, in the `examples/grunt` 
