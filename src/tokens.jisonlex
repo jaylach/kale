@@ -18,14 +18,6 @@ glyph           [+(){}\[\]|@:,.]
 '->'            { return '->'; }
 '{{'            { return '{{'; }
 '}}'            { return '}}'; }
-'=='            { return '=='; }
-'!='            { return '!='; }
-'>'             { return '>'; }
-'<'             { return '<'; }
-'>='            { return '>='; }
-'<='            { return '<='; }
-'&&'            { return '&&'; }
-'||'            { return '||' }
 {glyph}         { return yytext; }
 
 /* General */
