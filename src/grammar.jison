@@ -1,7 +1,4 @@
-%left '||'
-%left '&&'
-%left '>' '<' '>=' '<='
-%left '==' '!='
+%left '+'
 
 %start template
 
@@ -130,6 +127,8 @@ value
     { $$ = new yy.Value('STRING', $1); }
   | NUMBER
     { $$ = new yy.Value('NUMBER', parseInt($1)); }
+  | value '+' value
+    { $$ = new yy.Operation($1, $3, $2); }
   ;
 
 binding 

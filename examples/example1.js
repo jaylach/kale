@@ -22,4 +22,4 @@ var testData = {
 var result = compiled.user(testData, {});
 console.log(JSON.stringify(result));
 
-console.log(kale._getBrowserScript(__dirname + '/example1.kale'));
+//console.log(kale.getBrowserScript(__dirname + '/example1.kale'));

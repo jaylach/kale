@@ -12,6 +12,10 @@ user => {
 }
 
 address => {
+  short: {{street1}} + '\n' + 
+         {{city}} + ', ' + 
+         {{state}} + ' ' + 
+         {{zipCode}},  
   street: {{street1}},
   city: {{city}},
   state: {{state}},
