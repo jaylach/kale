@@ -19,6 +19,7 @@ address => {
   street: {{street1}},
   city: {{city}},
   state: {{state}},
-  zip: {{zipCode}}
+  zip: {{zipCode}},
+  test: {{$.userName}}
 }
 

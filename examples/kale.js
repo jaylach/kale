@@ -210,15 +210,19 @@ kale.service('Kale', [
         }; //- callAction()
 
         // lookupProperty()
-        Engine.prototype.lookupProperty = function lookupProperty(root, values) {
+        Engine.prototype.lookupProperty = function lookupProperty(root, locals, values) {
           if (values.length === 1 && values[0] === '_') {
             return root;
           }
 
           var value = null;
           var failed = false;
-
           var lastValue = root;
+
+          if (values.length > 0 && values[0] === "$") {
+            lastValue = locals;
+          }
+
           values.forEach(function(prop) {
             if (lastValue[prop] == null) {
               failed = true;
@@ -238,32 +242,32 @@ kale.service('Kale', [
         Engine.prototype["user"] = function user(input, locals) {
           var $tplFunction = (function user($input, $) {
             var $final = {};
-            var $var_0 = this.lookupProperty($input, ["userId"]);
+            var $var_0 = this.lookupProperty($input, $, ["userId"]);
             $final['id'] = $var_0;
-            var $var_1 = this.lookupProperty($input, ["userName"]);
+            var $var_1 = this.lookupProperty($input, $, ["userName"]);
             $final['userName'] = $var_1;
-            var $var_2 = this.lookupProperty($input, ["firstName"]);
+            var $var_2 = this.lookupProperty($input, $, ["firstName"]);
             $final['firstName'] = $var_2;
-            var $var_3 = this.lookupProperty($input, ["phones"]);
+            var $var_3 = this.lookupProperty($input, $, ["phones"]);
             $var_3 = this.callAction('filter', $var_3, {
               "type": "home"
             });
-            $var_3 = this.callAction('first', $var_3, {});
+            $var_3 = this.callAction('first', $var_3, $input);
             $var_3 = this.callAction('pluck', $var_3, {
               "prop": "number"
             });
             $final['homePhone'] = $var_3;
-            var $var_4 = this.lookupProperty($input, ["phones"]);
+            var $var_4 = this.lookupProperty($input, $, ["phones"]);
             $var_4 = this.callAction('filter', $var_4, {
               "type": "mobile"
             });
-            $var_4 = this.callAction('first', $var_4, {});
+            $var_4 = this.callAction('first', $var_4, $input);
             $var_4 = this.callAction('pluck', $var_4, {
               "prop": "number"
             });
             $final['mobilePhone'] = $var_4;
-            var $var_5 = this.lookupProperty($input, ["_"]);
-            $var_5 = this.callAction('@address', $var_5, {});
+            var $var_5 = this.lookupProperty($input, $, ["_"]);
+            $var_5 = this.callAction('@address', $var_5, $input);
             $final['address'] = $var_5;
             return $final;
           }).bind(this);
@@ -281,14 +285,18 @@ kale.service('Kale', [
         Engine.prototype["address"] = function address(input, locals) {
           var $tplFunction = (function address($input, $) {
             var $final = {};
-            var $var_0 = this.lookupProperty($input, ["street1"]);
-            $final['street'] = $var_0;
-            var $var_1 = this.lookupProperty($input, ["city"]);
-            $final['city'] = $var_1;
-            var $var_2 = this.lookupProperty($input, ["state"]);
-            $final['state'] = $var_2;
-            var $var_3 = this.lookupProperty($input, ["zipCode"]);
-            $final['zip'] = $var_3;
+            var $var_0 = this.lookupProperty($input, $, ["street1"]) + "\n" + this.lookupProperty($input, $, ["city"]) + ", " + this.lookupProperty($input, $, ["state"]) + " " + this.lookupProperty($input, $, ["zipCode"]);
+            $final['short'] = $var_0;
+            var $var_1 = this.lookupProperty($input, $, ["street1"]);
+            $final['street'] = $var_1;
+            var $var_2 = this.lookupProperty($input, $, ["city"]);
+            $final['city'] = $var_2;
+            var $var_3 = this.lookupProperty($input, $, ["state"]);
+            $final['state'] = $var_3;
+            var $var_4 = this.lookupProperty($input, $, ["zipCode"]);
+            $final['zip'] = $var_4;
+            var $var_5 = this.lookupProperty($input, $, ["$", "userName"]);
+            $final['test'] = $var_5;
             return $final;
           }).bind(this);
           var result = {};
@@ -318,6 +326,7 @@ kale.service('Kale', [
           }
           return result;
         };
+
 
         // Exports
         return Engine;
