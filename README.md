@@ -25,6 +25,26 @@ using kale
 ----------
 
 ### creating a template
+kale can convert both raw json/javascript objets and json/javascript arrays. If you pass kale a plain object, it will
+apply the template using just that object. If you pass kale an array it will apply the template to each object within
+the array.
+
+```
+templateName => {
+  
+}
+```
+
+or
+
+```
+templateName -> {
+  
+}
+```
+
+To create a new template. Using a fat arrow (`=>`) will create a new object when the template is used (basically, a map).
+Using a skinny arrow (`->`) will modify the object in place, only changing the properties which are specified. 
 
 ### using a template
 
