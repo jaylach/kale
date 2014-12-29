@@ -17,14 +17,14 @@ kale sets out with a few main goals in mind:
 Please note that kale is currently in an _alpha_ state. Most features are somewhere between Stability 1
 (Experimental) and Stability 2 (Unstable).
 
+installation
+------------
+`npm install kale@beta`
+
 stay tuned
 ----------
 I'll be filling out this README.md file in the coming days. Please stay tuned for more information, examples, 
 and, most importantly, tests! :)
-
-installation
-------------
-`npm install kale@beta`
 
 in browser
 ----------
