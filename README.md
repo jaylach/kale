@@ -130,6 +130,43 @@ Kale provides the following actions by default:
 * toLower - _convert a string to lower case_
 * capitalize - _capitalize Every Word In A String_
 
+**To create your own actions**
+
+```javascript
+// some_file.js
+var kale = require('kale');
+
+// reverse()
+var reverse = function reverse(value) {
+  if ( Array.isArray(value) ) {
+    return value.reverse();
+  }
+  else if ( typeof(value) === 'string' ) {
+    return value.split('').reverse().join('');
+  }
+}; //- reverse()
+
+// simplePluck()
+var simplePluck = function simplePluck(value, prop) {
+  if ( typeof(value) === 'object' ) {
+    return value[prop];
+  }
+
+  return value;
+}; //- simplePluck()
+
+kale.addAction('reverse', reverse);
+kale.addAction('simplePluck', simplePluck);
+```
+
+<pre>
+// some_file.kale
+some_template => {
+  <strong>reversed: {{items | reverse}}</strong>,
+  <strong>simply_plucked: {{obj | pluck: 'someProp' }}
+}
+</pre>
+
 ### using a template
 
 in browser
