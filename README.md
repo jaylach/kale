@@ -171,9 +171,38 @@ some_template => {
 
 This example is taken almost directly from `example1.js` in the examples folder.
 
+```
+// example1.kale
+user => {
+  id: {{userId}},
+  userName: {{userName}},
+  firstName: {{firstName}},
+  homePhone: {{ phones | filter: { type: 'home' }
+                       | first
+                       | pluck: 'number' }},
+  mobilePhone: {{ phones | filter: { type: 'mobile' }
+                         | first
+                         | pluck: 'number' }},
+  address: {{ _ | @address }}
+}
+
+address => {
+  short: {{street1}} + '\n' + 
+         {{city}} + ', ' + 
+         {{state}} + ' ' + 
+         {{zipCode}},  
+  street: {{street1}},
+  city: {{city}},
+  state: {{state}},
+  zip: {{zipCode}},
+  test: {{$.userName}}
+}
+```
+
 ```javascript
+// example1.js
 var kale = require('kale');
-var compiled = kale.compileFile('some_file.kale');
+var compiled = kale.compileFile('example1.kale');
 
 var testData = {
   userId: 1,
@@ -193,6 +222,26 @@ var testData = {
 };
 
 var result = compiled.user(testData);
+
+/* result =
+
+{
+  "id": 1,
+  "userName": "codeGrit",
+  "firstName": "code",
+  "homePhone": "(888) 888-8881",
+  "mobilePhone": "(888) 888-8882",
+  "address": {
+    "short": "123 Main Street\nOver, There 00001",
+    "street": "123 Main Street",
+    "city": "Over",
+    "state": "There",
+    "zip": "00001",
+    "test": "codeGrit"
+  }
+}
+
+*/
 ```
 
 in browser
