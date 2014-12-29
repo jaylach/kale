@@ -31,19 +31,19 @@ the array.
 
 To create a new template:
 
-```
+<pre>
 templateName => {
   // Properties go here
 }
-```
+</pre>
 
 or
 
-```
+<pre>
 templateName -> {
   // Properties go here
 }
-```
+</pre>
 
 _Using a fat arrow (`=>`) will create a new object when the template is used (basically, a map).
 Using a skinny arrow (`->`) will modify the object in place, only changing the properties which are specified._
