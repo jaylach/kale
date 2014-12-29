@@ -51,7 +51,7 @@ Using a skinny arrow (`->`) will modify the object in place, only changing the p
 To map a new property, with a string or number value:
 
 <pre>
-templateName => {
+template01 => {
   <strong>stringKey: "value"</strong>,
   <strong>numberKey: 42</strong>
 }
@@ -60,15 +60,26 @@ templateName => {
 To mape a new property, with a value taken from the input object:
 
 <pre>
-templateName => {
+template01 => {
   stringKey: "value",
   numberKey: 42,
-  <strong>boundKey: {{inputKey}}</strong>
+  <strong>"bound key": {{inputKey}}</strong>
 }
 </pre>
 
-_The value of `boundKey` will be set to whatever value the `inputKey` property is of the input object. Note that you can 
+_The value of `bound key` will be set to whatever value the `inputKey` property is of the input object. Note that you can 
 also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`, etc._
+
+To concatenate binding values:
+
+<pre>
+template01 => {
+  stringKey: "value",
+  numberKey: 42,
+  "bound key": {{inputKey}},
+  <strong>full_name: {{firstName}} + ' ' + {{lastName}}
+}
+</pre>
 
 ### using a template
 
