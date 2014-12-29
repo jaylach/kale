@@ -71,7 +71,6 @@ _The value of `userGroup` will be set to whatever value the `inputKey` property 
 also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`, etc._
 
 To concatenate binding values:
-
 <pre>
 template01 => {
   userName: "awesome_man",
@@ -80,6 +79,8 @@ template01 => {
   <strong>full_name: {{firstName}} + ' ' + {{lastName}}
 }
 </pre>
+
+
 
 ### using a template
 
