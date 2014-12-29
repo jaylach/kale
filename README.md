@@ -33,7 +33,7 @@ To create a new template:
 
 ```
 templateName => {
-  
+  // Properties go here
 }
 ```
 
@@ -41,7 +41,7 @@ or
 
 ```
 templateName -> {
-  
+  // Properties go here
 }
 ```
 
