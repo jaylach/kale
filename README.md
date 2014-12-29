@@ -4,8 +4,9 @@ kale is a view templating engine for your node.js based RESTful APIs. It allows 
 treat the data of your API as you would any other view. The gain here is that you can 
 separate your view logic from your controllers and models. kale can compile to JSON and XML
 natively but other builders can be plugged in to allow compiling to any other format. kale is
-heavily inspired by the Ruby gem [rabl](https://github.com/nesquena/rabl). The syntax is loosely
-based off many popular languages, such as Ruby, Lua, and HTML. 
+heavily inspired by the Ruby gem [rabl](https://github.com/nesquena/rabl). The syntax was designed
+to be very similar to JSON, as it's familiar to most web developers. kale also borrows a lot of 
+conventions from the AngularJS project. 
 
 kale sets out with a few main goals in mind:
 
