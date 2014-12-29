@@ -163,11 +163,37 @@ kale.addAction('simplePluck', simplePluck);
 // some_file.kale
 some_template => {
   <strong>reversed: {{items | reverse}}</strong>,
-  <strong>simply_plucked: {{obj | pluck: 'someProp' }}
+  <strong>simply_plucked: {{obj | pluck: 'someProp' }}</strong>
 }
 </pre>
 
 ### using a template
+
+This example is taken almost directly from `example1.js` in the examples folder.
+
+```javascript
+var kale = require('kale');
+var compiled = kale.compileFile('some_file.kale');
+
+var testData = {
+  userId: 1,
+  userName: 'codeGrit',
+  password: 'bad_idea',
+  firstName: 'code',
+  lastName: 'Grit',
+  street1: '123 Main Street',
+  city: 'Over',
+  state: 'There',
+  zipCode: '00001',
+  phones: [
+    { number: '(888) 888-8881', type: 'home' },
+    { number: '(888) 888-8882', type: 'mobile' },
+    { number: '(888) 888-8883', type: 'other' },
+  ]
+};
+
+var result = compiled.user(testData);
+```
 
 in browser
 ----------
