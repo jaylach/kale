@@ -48,14 +48,27 @@ templateName -> {
 _Using a fat arrow (`=>`) will create a new object when the template is used (basically, a map).
 Using a skinny arrow (`->`) will modify the object in place, only changing the properties which are specified._
 
-To map a new property, with a string or number value, to the output:
+To map a new property, with a string or number value:
 
 <pre>
-templateName -> {
+templateName => {
   <strong>stringKey: "value"</strong>,
   <strong>numberKey: 42</strong>
 }
 </pre>
+
+To mape a new property, with a value taken from the input object:
+
+<pre>
+templateName => {
+  stringKey: "value",
+  numberKey: 42,
+  <strong>boundKey: {{inputKey}}</strong>
+}
+</pre>
+
+_The value of `boundKey` will be set to whatever value the `inputKey` property is of the input object. Note that you can 
+also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`, etc._
 
 ### using a template
 
