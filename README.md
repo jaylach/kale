@@ -48,7 +48,13 @@ templateName -> {
 _Using a fat arrow (`=>`) will create a new object when the template is used (basically, a map).
 Using a skinny arrow (`->`) will modify the object in place, only changing the properties which are specified._
 
+To map a new property, with a string value, to the output:
 
+<pre>
+templateName -> {
+  <strong>key: "value"</strong>
+}
+</pre>
 
 ### using a template
 
