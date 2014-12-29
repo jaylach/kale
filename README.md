@@ -21,10 +21,12 @@ installation
 ------------
 `npm install kale@beta`
 
-stay tuned
+using kale
 ----------
-I'll be filling out this README.md file in the coming days. Please stay tuned for more information, examples, 
-and, most importantly, tests! :)
+
+### creating a template
+
+### using a template
 
 in browser
 ----------
