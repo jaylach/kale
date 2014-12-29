@@ -51,7 +51,7 @@ Using a skinny arrow (`->`) will modify the object in place, only changing the p
 To map a new property, with a string or number value:
 
 <pre>
-template01 => {
+user => {
   <strong>userName: "awesome_man"</strong>,
   <strong>userId: 42</strong>
 }
@@ -60,7 +60,7 @@ template01 => {
 To mape a new property, with a value taken from the input object:
 
 <pre>
-template01 => {
+user => {
   userName: "awesome_man",
   userId: 42,
   <strong>userGroup: {{groupId}}</strong>
@@ -71,16 +71,64 @@ _The value of `userGroup` will be set to whatever value the `inputKey` property 
 also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`, etc._
 
 To concatenate binding values:
+
 <pre>
-template01 => {
+user => {
   userName: "awesome_man",
   userId: 42,
   userGroup: {{groupId}},
-  <strong>full_name: {{firstName}} + ' ' + {{lastName}}
+  <strong>full_name: {{firstName}} + ' ' + {{lastName}}</strong>
 }
 </pre>
 
+To embed one template into another:
 
+<pre>
+user => {
+  userName: "awesome_man",
+  userId: 42,
+  userGroup: {{groupId}},
+  full_name: {{firstName}} + ' ' + {{lastName}},
+  <strong>address: {{_ | @address}}</strong>
+}
+
+address => {
+  street: {{street1}},
+  city: {{city}},
+  state: {{state}},
+  zipCode: {{zip_code}}
+}
+</pre>
+
+_By using the pipe (`|`) we are able to call actions and/or embed other templates. When using the pipe, the identifier before
+the pipe is the first parameter that will be passed to the action. This identifier is either a binding on the input object or
+an underscore (`_`), which means use the full input object._
+
+To call an action with multiple arguments, and multiple actions:
+
+<pre>
+user => {
+  userName: "awesome_man",
+  userId: 42,
+  userGroup: {{groupId}},
+  full_name: {{firstName}} + ' ' + {{lastName}},
+  address: {{_ | @address}},
+  <strong>homePhone: {{phones | filter: { type: 'home' } 
+                              | first
+                              | pluck: 'number' }}</strong>
+}
+</pre>
+
+Kale provides the following actions by default: 
+
+* first - _uses the first item in an array_
+* sortBy(args: Object { prop, order }) - _sort an array of objects by specified `prop`, in the specified `order`_
+* filter(args: Object { * }) - _filter an array where input key: value matches args key: value_
+* reverse - _reverse an array or string_
+* pluck(prop: String) - _pluck values of specified `prop` off array of objects_
+* toUpper - _convert a string to upper case_
+* toLower - _convert a string to lower case_
+* capitalize - _capitalize Every Word In A String_
 
 ### using a template
 
