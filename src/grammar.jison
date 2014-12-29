@@ -144,9 +144,9 @@ binding
 action
   : IDENTIFIER
     { $$ = new yy.Action($1); }
-  | IDENTIFIER ':' '{' simple_property_list '}'
+  | IDENTIFIER ':' action_parameter_list
     {   
-      $$ = new yy.Action($1, $4); 
+      $$ = new yy.Action($1, $3); 
     }
   | '@' IDENTIFIER
     { $$ = new yy.Action($1 + $2); }
@@ -159,8 +159,30 @@ action_list
         $$ = [ $1 ];
       }
     }
-  | action_list ',' action
+  | action_list '|' action
     {
       $$ = $1.concat($3);
     }
+  ;
+
+action_parameter
+  : IDENTIFIER
+    { $$ = new yy.Accessor($1); }
+  | STRING
+    { $$ = new yy.Value('STRING', $1); }
+  | NUMBER
+    { $$ = new yy.Value('NUMBER', parseInt($1)); }
+  | '{' simple_property_list '}'
+    { $$ = new yy.Value('JSON', $2); }
+  ;
+
+action_parameter_list
+  : action_parameter
+    { 
+      if ( !Array.isArray($1) ) {
+        $$ = [ $1 ];
+      }
+    }
+  | action_parameter_list ',' action_parameter
+    { $$ = $1.concat($3); }
   ;

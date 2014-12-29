@@ -2,12 +2,12 @@ user => {
   id: {{userId}},
   userName: {{userName}},
   firstName: {{firstName}},
-  homePhone: {{ phones | filter: { type: 'home' },
-                         first,
-                         pluck: { prop: 'number' } }},
-  mobilePhone: {{ phones | filter: { type: 'mobile' },
-                           first,
-                           pluck: { prop: 'number' } }},
+  homePhone: {{ phones | filter: { type: 'home' }
+                       | first
+                       | pluck: 'number' }},
+  mobilePhone: {{ phones | filter: { type: 'mobile' }
+                         | first
+                         | pluck: 'number' }},
   address: {{ _ | @address }}
 }
 
