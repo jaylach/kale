@@ -29,7 +29,7 @@ kale can convert both raw json/javascript objets and json/javascript arrays. If 
 apply the template using just that object. If you pass kale an array it will apply the template to each object within
 the array.
 
-*To create a new template:*
+**To create a new template:**
 
 <pre>
 templateName => {
@@ -48,7 +48,7 @@ templateName -> {
 _Using a fat arrow (`=>`) will create a new object when the template is used (basically, a map).
 Using a skinny arrow (`->`) will modify the object in place, only changing the properties which are specified._
 
-*To map a new property, with a string or number value:*
+**To map a new property, with a string or number value:**
 
 <pre>
 user => {
@@ -57,7 +57,7 @@ user => {
 }
 </pre>
 
-*To mape a new property, with a value taken from the input object:*
+**To mape a new property, with a value taken from the input object:**
 
 <pre>
 user => {
@@ -70,7 +70,7 @@ user => {
 _The value of `userGroup` will be set to whatever value the `inputKey` property is of the input object. Note that you can 
 also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`, etc._
 
-*To concatenate binding values:*
+**To concatenate binding values:**
 
 <pre>
 user => {
@@ -81,7 +81,7 @@ user => {
 }
 </pre>
 
-*To embed one template into another:*
+**To embed one template into another:**
 
 <pre>
 user => {
@@ -104,7 +104,7 @@ _By using the pipe (`|`) we are able to call actions and/or embed other template
 the pipe is the first parameter that will be passed to the action. This identifier is either a binding on the input object or
 an underscore (`_`), which means use the full input object._
 
-*To call an action with multiple arguments, and/or call multiple actions:*
+**To call an action with multiple arguments, and/or call multiple actions:**
 
 <pre>
 user => {
