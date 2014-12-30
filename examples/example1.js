@@ -1,6 +1,6 @@
 var kale = require('../index');
 
-var compiled = kale.compileFile(__dirname + '/example1.kale');
+var compiled = kale.compile('**/*.kale');
 
 var testData = {
   userId: 1,

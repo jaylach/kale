@@ -9,7 +9,7 @@ module.exports = function gruntFile(grunt) {
       all: {
         dest: '../kale.js',
         src: '../*.kale',
-        mode: 'angular'
+        mode: 'global'
       }
     }
   };

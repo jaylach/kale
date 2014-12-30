@@ -16,6 +16,7 @@
     "node": ">= 0.10.32"
   },
   "dependencies": {
+    "glob": "^4.3.2",
     "js-beautify": "^1.5.4",
     "lodash": "^2.4.1"
   },

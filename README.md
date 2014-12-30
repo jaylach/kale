@@ -207,7 +207,9 @@ address => {
 ```javascript
 // example1.js
 var kale = require('kale');
-var compiled = kale.compileFile('example1.kale');
+
+// Note that kale provides a single compile function which accepts a file name or a file glob.
+var compiled = kale.compile('**/*.kale');
 
 var testData = {
   userId: 1,
