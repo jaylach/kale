@@ -1,6 +1,6 @@
-<div id="logo-container">
-  <img src="http://os.codegrit.com/kale/images/kale.png" align="center" width="360" />
-</div>
+<p align="center">
+  <img src="http://os.codegrit.com/kale/images/kale.png" width="360" />
+</p>
 
 overview
 --------
