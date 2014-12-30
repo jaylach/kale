@@ -1,11 +1,6 @@
 <div id="logo-container">
-  <img src="http://os.codegrit.com/kale/images/kale.png" />
+  <img src="http://os.codegrit.com/kale/images/kale.png" align="center" width="360" />
 </div>
-
-#logo-container {
-  width: 360px;
-  height: 127px;
-}
 
 overview
 --------
