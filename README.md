@@ -1,6 +1,11 @@
-<div style="text-align: center">
-  <img src="http://os.codegrit.com/kale/images/kale.png" style="width: 360px;" />
+<div id="logo-container">
+  <img src="http://os.codegrit.com/kale/images/kale.png" />
 </div>
+
+#logo-container {
+  width: 360px;
+  height: 127px;
+}
 
 overview
 --------
