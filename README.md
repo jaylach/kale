@@ -1,6 +1,6 @@
-<center>
-  <img src="http://os.codegrit.com/kale/images/kale.png" />
-</center>
+<div style="text-align: center">
+  <img src="http://os.codegrit.com/kale/images/kale.png" style="width: 360px;" />
+</div>
 
 overview
 --------
