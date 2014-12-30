@@ -1,3 +1,7 @@
+<center>
+  <img src="http://os.codegrit.com/kale/images/kale.png" />
+</center>
+
 overview
 --------
 kale is a view templating engine for your node.js based RESTful APIs. It allows you to 
@@ -102,7 +106,8 @@ address => {
 
 _By using the pipe (`|`) we are able to call actions and/or embed other templates. When using the pipe, the identifier before
 the pipe is the first parameter that will be passed to the action. This identifier is either a binding on the input object or
-an underscore (`_`), which means use the full input object._
+an underscore, which means use the full input object. Prefixing an action with the at symbol (`@`) tells kale to use a template
+with that name. Note that the template does not have to be in the same file, only compiled._
 
 **To call an action with multiple arguments, and/or call multiple actions:**
 
