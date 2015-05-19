@@ -1,7 +1,7 @@
 {
   "name": "kale",
   "description": "A JSON view templating and transformation library for both sides of your RESTful APIs.",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "stability": "alpha",
   "main": "index.js",
   "keywords": [
