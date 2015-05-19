@@ -70,6 +70,7 @@ window.kale = (function() {
         return value;
       }
       this._actions["filter"] = function filter(value, args) {
+        //console.log(value, args);
         if (Array.isArray(value) && _hasArgs(args)) {
           var keys = Object.keys(args);
 
@@ -150,8 +151,27 @@ window.kale = (function() {
         return this[actionName].apply(this, newArgs);
       }
 
-      if (typeof(this._actions[action]) === 'function') {
-        return this._actions[action].apply(this, newArgs);
+      var actionName = action;
+      var doFilter = false;
+      if (actionName.indexOf('!') === 0) {
+        actionName = actionName.substring(1);
+        doFilter = true;
+      }
+
+      if (typeof(this._actions[actionName]) === 'function') {
+        if (doFilter === true) {
+          var keeper = this._actions[actionName].apply(this, newArgs);
+          if (keeper === true) {
+            return param;
+          } else {
+            return {
+              $_keep: false,
+              $_value: param
+            };
+          }
+        } else {
+          return this._actions[actionName].apply(this, newArgs);
+        }
       }
 
       return param;
@@ -203,6 +223,8 @@ window.kale = (function() {
         var $var_0 = this._lookupProperty($input, $, ["userId"]);
         $final['id'] = $var_0;
         var $var_1 = this._lookupProperty($input, $, ["userName"]);
+        $var_1 = this._callAction('!startsWith', $var_1, [this._lookupProperty($input, $, ["$", "user"])]);
+        if ($var_1.$_keep === false) return null;
         $final['userName'] = $var_1;
         var $var_2 = this._lookupProperty($input, $, ["firstName"]);
         $final['firstName'] = $var_2;
@@ -210,18 +232,25 @@ window.kale = (function() {
         $var_3 = this._callAction('filter', $var_3, [{
           "type": "home"
         }]);
+        if ($var_3.$_keep === false) return null;
         $var_3 = this._callAction('first', $var_3, $input);
+        if ($var_3.$_keep === false) return null;
         $var_3 = this._callAction('pluck', $var_3, ["number"]);
+        if ($var_3.$_keep === false) return null;
         $final['homePhone'] = $var_3;
         var $var_4 = this._lookupProperty($input, $, ["phones"]);
         $var_4 = this._callAction('filter', $var_4, [{
           "type": "mobile"
         }]);
+        if ($var_4.$_keep === false) return null;
         $var_4 = this._callAction('first', $var_4, $input);
+        if ($var_4.$_keep === false) return null;
         $var_4 = this._callAction('pluck', $var_4, ["number"]);
+        if ($var_4.$_keep === false) return null;
         $final['mobilePhone'] = $var_4;
         var $var_5 = this._lookupProperty($input, $, ["_"]);
         $var_5 = this._callAction('@address', $var_5, $input);
+        if ($var_5.$_keep === false) return null;
         $final['address'] = $var_5;
         return $final;
       }).bind(this);
@@ -229,7 +258,8 @@ window.kale = (function() {
       if (Array.isArray(input)) {
         result = [];
         input.forEach(function(item) {
-          result.push($tplFunction(item, locals));
+          var t = $tplFunction(item, locals);
+          if (t != null) result.push(t)
         });
       } else {
         result = $tplFunction(input, locals);
@@ -257,7 +287,8 @@ window.kale = (function() {
       if (Array.isArray(input)) {
         result = [];
         input.forEach(function(item) {
-          result.push($tplFunction(item, locals));
+          var t = $tplFunction(item, locals);
+          if (t != null) result.push(t)
         });
       } else {
         result = $tplFunction(input, locals);
@@ -273,7 +304,8 @@ window.kale = (function() {
       if (Array.isArray(input)) {
         result = [];
         input.forEach(function(item) {
-          result.push($tplFunction(item, locals));
+          var t = $tplFunction(item, locals);
+          if (t != null) result.push(t)
         });
       } else {
         result = $tplFunction(input, locals);

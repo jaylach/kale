@@ -1,6 +1,6 @@
 user => {
   id: {{userId}},
-  userName: {{userName}},
+  userName: {{userName | !startsWith: $.user}},
   firstName: {{firstName}},
   homePhone: {{ phones | filter: { type: 'home' }
                        | first

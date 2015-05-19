@@ -148,6 +148,10 @@ action
     {   
       $$ = new yy.Action($1, $3); 
     }
+  | '!' IDENTIFIER ':' action_parameter_list
+    {
+      $$ = new yy.Action($1 + $2, $4); 
+    }
   | '@' IDENTIFIER
     { $$ = new yy.Action($1 + $2); }
   ;
@@ -166,8 +170,8 @@ action_list
   ;
 
 action_parameter
-  : IDENTIFIER
-    { $$ = new yy.Accessor($1); }
+  : accessor
+    { $$ = $1 }
   | STRING
     { $$ = new yy.Value('STRING', $1); }
   | NUMBER
