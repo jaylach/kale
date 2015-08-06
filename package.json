@@ -1,7 +1,7 @@
 {
   "name": "kale",
   "description": "A JSON view templating and transformation library for both sides of your RESTful APIs.",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "stability": "alpha",
   "main": "index.js",
   "keywords": [
@@ -16,15 +16,16 @@
     "node": ">= 0.10.32"
   },
   "dependencies": {
-    "glob": "^4.3.2",
-    "js-beautify": "^1.5.4",
-    "lodash": "^2.4.1"
+    "glob": "^4.5.3",
+    "js-beautify": "^1.5.10",
+    "lodash": "^2.4.2"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
     "jison": "^0.4.15",
     "mocha": "^2.0.1",
-    "should": "^4.4.1"
+    "should": "^4.4.1",
+    "source-map": "^0.4.4"
   },
   "scripts": {
     "test": "",

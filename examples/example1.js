@@ -1,35 +1,18 @@
 var kale = require('../index');
 
-kale.addAction('startsWith', function(input, value) {
+/*kale.addAction('startsWith', function(input, value) {
   return input.indexOf(value) === 0;
-});
+});*/
 
 var compiled = kale.compile('**/*.kale');
-
-var testData = {
-  userId: 1,
-  userName: 'codeGrit',
-  password: 'bad_idea',
-  firstName: 'code',
-  lastName: 'Grit',
-  street1: '123 Main Street',
-  city: 'Over',
-  state: 'There',
-  zipCode: '00001',
-  phones: [
-    { number: '(888) 888-8881', type: 'home' },
-    { number: '(888) 888-8882', type: 'mobile' },
-    { number: '(888) 888-8883', type: 'other' },
-  ]
-};
 
 var testArray = [
   {
     userId: 1,
-    userName: 'codeGrit',
+    userName: 'jlach',
     password: 'bad_idea',
-    firstName: 'code',
-    lastName: 'Grit',
+    firstName: 'j',
+    lastName: 'lach',
     street1: '123 Main Street',
     city: 'Over',
     state: 'There',
@@ -42,10 +25,10 @@ var testArray = [
   },
   {
     userId: 2,
-    userName: 'codeSplit',
+    userName: 'toys',
     password: 'great_idea',
     firstName: 'toy',
-    lastName: 'S',
+    lastName: 's',
     street1: '123 Main Street',
     city: 'Over',
     state: 'There',
@@ -59,7 +42,7 @@ var testArray = [
 ];
 
 var result = compiled.user(testArray, {
-  user: 'code'
+  user: 'jlach'
 });
 
 console.log(JSON.stringify(result));
