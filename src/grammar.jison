@@ -21,16 +21,10 @@ template_def_list
   ;
 
 template_def
-  : IDENTIFIER '=>' block
+  : IDENTIFIER '=>' block_with_actions
     {
-      $$ = new yy.TemplateNode(@1.first_line, @1.first_column, 'NEW', $1, $3);
+      $$ = new yy.TemplateNode(@1.first_line, @1.first_column, $1, $3);
     }
-  | IDENTIFIER '->' block
-    {
-      $$ = new yy.TemplateNode(@1.first_line, @1.first_column, 'MODIFY', $1, $3);
-    }
-  | IDENTIFIER '=>' block '(' action_list ')'
-  | IDENTIFIER '->' block '(' action_list ')'
   ;
 
 block
@@ -44,6 +38,15 @@ block
     }
   ;
 
+block_with_actions
+  : block
+  | block '(' action_list ')'
+    {
+      $$ = $1;
+      $$.actions = $3;
+    }
+  ;
+
 property
   : IDENTIFIER ':' value
     {
@@ -53,11 +56,11 @@ property
     {
       $$ = new yy.PropertyNode(@1.first_line, @1.first_column, $1, $3);
     }
-  | IDENTIFIER ':' block
+  | IDENTIFIER ':' block_with_actions
     {
       $$ = new yy.PropertyNode(@1.first_line, @1.first_column, $1, $3);
     }
-  | STRING ':' block
+  | STRING ':' block_with_actions
     {
       $$ = new yy.PropertyNode(@1.first_line, @1.first_column, $1, $3);
     }
