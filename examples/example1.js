@@ -4,7 +4,9 @@ var kale = require('../index');
   return input.indexOf(value) === 0;
 });*/
 
-var compiled = kale.compile('**/*.kale');
+kale.compile('**/*.kale', 'examples/templates', {
+  _banner: 'var $engine = require("../../lib/engine");'
+});
 
 var testArray = [
   {
@@ -41,10 +43,7 @@ var testArray = [
   },
 ];
 
-var result = compiled.user(testArray, {
-  user: 'jlach'
-});
-
+var result = require('./templates/user')(testArray, './templates/user');
 console.log(JSON.stringify(result));
 
 //console.log(kale.getBrowserScript(__dirname + '/examples/example1.kale'));

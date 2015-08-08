@@ -18,7 +18,8 @@
   "dependencies": {
     "glob": "^4.5.3",
     "js-beautify": "^1.5.10",
-    "lodash": "^2.4.2"
+    "lodash": "^3.10.0",
+    "mkdirp": "^0.5.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
