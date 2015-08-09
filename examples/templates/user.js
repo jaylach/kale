@@ -91,77 +91,10 @@ module.exports = function user($input, locals) {
     }).call(this);
     $final["mobilePhone"] = $10;
     var $14 = (function $14() {
-      var $15 = (function $15($input, $) {
-        var $final = {};
-        var $16 = (function $16() {
-          var $17 = (function() {
-            var $19 = (function() {
-              var $21 = (function() {
-                var $23 = (function() {
-                  var $25 = (function() {
-                    var $27 = (function() {
-                      return $engine.lookupProperty($input, $, ["street1"]);
-                    }).call(this);
-                    var $28 = (function() {
-                      return "\n";
-                    }).call(this);
-                    return $27 + $28;
-                  }).call(this);
-                  var $26 = (function() {
-                    return $engine.lookupProperty($input, $, ["city"]);
-                  }).call(this);
-                  return $25 + $26;
-                }).call(this);
-                var $24 = (function() {
-                  return ", ";
-                }).call(this);
-                return $23 + $24;
-              }).call(this);
-              var $22 = (function() {
-                return $engine.lookupProperty($input, $, ["state"]);
-              }).call(this);
-              return $21 + $22;
-            }).call(this);
-            var $20 = (function() {
-              return " ";
-            }).call(this);
-            return $19 + $20;
-          }).call(this);
-          var $18 = (function() {
-            return $engine.lookupProperty($input, $, ["zipCode"]);
-          }).call(this);
-          return $17 + $18;
-        }).call(this);
-        $final["short"] = $16;
-        var $29 = (function $29() {
-          return $engine.lookupProperty($input, $, ["street1"]);
-        }).call(this);
-        $final["street"] = $29;
-        var $30 = (function $30() {
-          return $engine.lookupProperty($input, $, ["city"]);
-        }).call(this);
-        $final["city"] = $30;
-        var $31 = (function $31() {
-          return $engine.lookupProperty($input, $, ["state"]);
-        }).call(this);
-        $final["state"] = $31;
-        var $32 = (function $32() {
-          return $engine.lookupProperty($input, $, ["zipCode"]);
-        }).call(this);
-        $final["zip"] = $32;
-        return $final;
-      }).bind(this);
-      var $result = {};
-      if (Array.isArray($input) && true) {
-        $result = [];
-        $input.forEach(function($item) {
-          var $x = $15($item, locals);
-          if ($x != null) $result.push($x);
-        });
-      } else {
-        $result = $15($input, locals);
-      }
-      return $result;
+      var $15 = $engine.lookupProperty($input, $, ["_"]);
+      var $15_args = $input;
+      $15 = $engine.callAction("@address", $15, $15_args);
+      return $15
     }).call(this);
     $final["address"] = $14;
     return $final;

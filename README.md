@@ -31,7 +31,7 @@ using kale
 ----------
 
 ### creating a template
-kale can convert both raw json/javascript objets and json/javascript arrays. If you pass kale a plain object, it will
+kale can convert both raw json/JavaScript objets and json/JavaScript arrays. If you pass kale a plain object, it will
 apply the template using just that object. If you pass kale an array it will apply the template to each object within
 the array.
 
@@ -100,7 +100,8 @@ address => {
 _By using the pipe (`|`) we are able to call actions and/or embed other templates. When using the pipe, the identifier before
 the pipe is the first parameter that will be passed to the action. This identifier is either a binding on the input object or
 an underscore, which means use the full input object. Prefixing an action with the at symbol (`@`) tells kale to use a template
-with that name. Note that the template does not have to be in the same file, only compiled._
+with that name. Note that kale will currenly only look for other templates if they are compiled in the same location as the 
+calling template._
 
 **To call an action with multiple arguments, and/or call multiple actions:**
 
@@ -132,7 +133,7 @@ Kale provides the following actions by default:
 
 ```javascript
 // some_file.js
-var kale = require('kale');
+var actions = require('kale/actions');
 
 // reverse()
 var reverse = function reverse(value) {
@@ -153,8 +154,8 @@ var simplePluck = function simplePluck(value, prop) {
   return value;
 }; //- simplePluck()
 
-kale.addAction('reverse', reverse);
-kale.addAction('simplePluck', simplePluck);
+actions.addAction('reverse', reverse);
+actions.addAction('simplePluck', simplePluck);
 ```
 
 <pre>
@@ -166,6 +167,8 @@ some_template => {
 </pre>
 
 ### using a template
+
+kale template are compiled directly to JavaScript. When parsing and compiling a template, kale will create a new JavaScript file in the specified location. The file wil be named to whatever the template name is, and you can include this into your node app just like you'd require any other module. 
 
 This example is taken almost directly from `example1.js` in the examples folder.
 
@@ -201,7 +204,7 @@ address => {
 var kale = require('kale');
 
 // Note that kale provides a single compile function which accepts a file name or a file glob.
-var compiled = kale.compile('**/*.kale');
+kale.compile('**/*.kale', 'examples/templates');
 
 var testData = {
   userId: 1,
@@ -220,7 +223,8 @@ var testData = {
   ]
 };
 
-var result = compiled.user(testData);
+var result = require('./templates/user')(testArray, './templates/user');
+console.log(JSON.stringify(result));
 
 /* result =
 

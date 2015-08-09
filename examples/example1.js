@@ -1,8 +1,5 @@
 var kale = require('../index');
-
-/*kale.addAction('startsWith', function(input, value) {
-  return input.indexOf(value) === 0;
-});*/
+var actions = require('../lib/actions');
 
 kale.compile('**/*.kale', 'examples/templates', {
   _banner: 'var $engine = require("../../lib/engine");'
