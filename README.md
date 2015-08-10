@@ -203,8 +203,11 @@ address => {
 // example1.js
 var kale = require('kale');
 
-// Note that kale provides a single compile function which accepts a file name or a file glob.
-kale.compile('**/*.kale', 'examples/templates');
+// Note that kale provides a single render function which accepts a single file.
+kale.render('examples/example1.kale', {
+  outPath: 'examples/templates',
+  pretty: true
+});
 
 var testData = {
   userId: 1,
@@ -223,7 +226,7 @@ var testData = {
   ]
 };
 
-var result = require('./templates/user')(testArray, './templates/user');
+var result = require('./templates/user')(testArray);
 console.log(JSON.stringify(result));
 
 /* result =

@@ -16,6 +16,8 @@
     "node": ">= 0.10.32"
   },
   "dependencies": {
+    "cli-color": "^1.0.0",
+    "commander": "^2.8.1",
     "glob": "^4.5.3",
     "js-beautify": "^1.5.10",
     "lodash": "^3.10.0",
@@ -27,6 +29,9 @@
     "mocha": "^2.0.1",
     "should": "^4.4.1",
     "source-map": "^0.4.4"
+  },
+  "bin": {
+    "kale": "./bin/kale.js"
   },
   "scripts": {
     "test": "",

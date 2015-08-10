@@ -1,4 +1,4 @@
-var $engine = require("../../lib/engine");
+var $engine = require("kale/engine");
 module.exports = function user($input, locals) {
   var $0 = (function $0($input, $) {
     var $final = {};
