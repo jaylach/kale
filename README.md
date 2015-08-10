@@ -23,9 +23,7 @@ Please note that kale is currently in an _alpha_ state. Most features are somewh
 
 installation
 ------------
-`npm install kale@beta`
-
-note that this alpha version has not yet been pushed to npm.
+`npm install kale@alpha`
 
 using kale
 ----------
