@@ -247,6 +247,17 @@ console.log(JSON.stringify(result));
 */
 ```
 
+command line
+------------
+
+After installing the latest version of node, install with:
+
+`npm install kale@alpha -g`
+
+and run with:
+
+`kale --help`
+
 in browser
 ----------
 BROWSER BUILD HAS BEEN REMOVED IN THIS VERSION. IT WILL REAPPEAR IN A LATER VERSION.
