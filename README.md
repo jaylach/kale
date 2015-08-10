@@ -29,7 +29,7 @@ using kale
 ----------
 
 ### creating a template
-kale can work with both json objets and json arrays. If you pass kale a plain object, it will apply the template 
+kale can work with both json objects and json arrays. If you pass kale a plain object, it will apply the template 
 using just that object. If you pass kale an array it will apply the template to each object within the array.
 
 **To create a new template:**
