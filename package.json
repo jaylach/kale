@@ -21,14 +21,14 @@
     "glob": "^4.5.3",
     "js-beautify": "^1.5.10",
     "lodash": "^3.10.0",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^0.5.1",
+    "source-map": "^0.4.4"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
     "jison": "^0.4.15",
     "mocha": "^2.0.1",
-    "should": "^4.4.1",
-    "source-map": "^0.4.4"
+    "should": "^4.4.1"
   },
   "bin": {
     "kale": "./bin/kale.js"
