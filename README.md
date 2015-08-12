@@ -1,6 +1,6 @@
 overview
 --------
-kale is a node.js templating engine for your json data. It allows you to treat your json data
+kale is a node.js templating engine for your JSON data. It allows you to treat your JSON data
 as you would any other view. The gain here is that you can separate your view logic from your 
 controllers and models. kale can transform to and from JSON natively. There are plans to, 
 eventually, add in XML and YAML support as well. kale is heavily inspired by the Ruby 
@@ -24,7 +24,7 @@ using kale
 ----------
 
 ### creating a template
-kale can work with both json objects and json arrays. If you pass kale a plain object, it will apply the template 
+kale can work with both JSON objects and arrays. If you pass kale a plain object, it will apply the template 
 using just that object. If you pass kale an array it will apply the template to each object within the array.
 
 **To create a new template:**
