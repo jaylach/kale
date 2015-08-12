@@ -47,9 +47,9 @@ program.args.forEach(function(file) {
   var out = kale.render(file, options);
 
   var end = new Date();
-  var diff = end - start;
+  var diff = (end - start) / 1000;
 
   out.forEach(function(result) {
-    log('Rendered', clc.bold(result.name), 'to', clc.bold(result.file), '[' + diff + 'ms]');
+    log('Rendered', clc.bold(result.name), 'to', clc.bold(result.file), '[' + diff + 's]');
   });
 });

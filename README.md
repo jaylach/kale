@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="http://os.codegrit.com/kale/images/kale.png" width="360" />
-</p>
-
 overview
 --------
 kale is a view templating engine for your node.js based RESTful APIs. It allows you to 
