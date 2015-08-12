@@ -25,10 +25,9 @@
     "source-map": "^0.4.4"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
     "jison": "^0.4.15",
-    "mocha": "^2.0.1",
-    "should": "^4.4.1"
+    "mocha": "^2.2.5",
+    "should": "^7.0.2"
   },
   "bin": {
     "kale": "./bin/kale.js"
