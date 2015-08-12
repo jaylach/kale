@@ -1,0 +1,9 @@
+simple => {
+	one: {{one}},
+	two: {{two}},
+	three: {
+		four: {{one}},
+		five: {{two}}
+	},
+	six: {{four}}
+}

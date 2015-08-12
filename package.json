@@ -22,9 +22,11 @@
     "js-beautify": "^1.5.10",
     "lodash": "^3.10.0",
     "mkdirp": "^0.5.1",
+    "rimraf": "^2.4.2",
     "source-map": "^0.4.4"
   },
   "devDependencies": {
+    "istanbul": "^0.3.17",
     "jison": "^0.4.15",
     "mocha": "^2.2.5",
     "should": "^7.0.2"
@@ -33,7 +35,8 @@
     "kale": "./bin/kale.js"
   },
   "scripts": {
-    "test": "",
+    "test": "mocha test",
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha test",
     "gen-parser": "./node_modules/.bin/jison src/grammar.jison src/tokens.jisonlex -o lib/parser.js -p lalr",
     "prepublish": "npm run gen-parser"
   },
