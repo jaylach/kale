@@ -3,6 +3,9 @@ node_js:
   - "0.11"
   - "0.10"
 
+before_script: npm run-script gen-parser
+script: npm test
+
 notifications:
   email:
     recipients:
