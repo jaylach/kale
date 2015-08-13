@@ -18,6 +18,16 @@ describe('kale tests', function() {
     should.exist(kale.render);
     kale.render.should.be.a.Function();
   });
+
+  it('should render to string', function() {
+    var result = kale.render('test/kale.kale');
+    result.should.be.an.Array();
+
+    var tpl = result[0];
+    tpl.should.be.an.Object();
+    tpl.name.should.equal('kale');
+    tpl.code.should.be.a.String();
+  });
 });
 
 // -----
@@ -31,6 +41,21 @@ describe('action tests', function() {
   it('should have addAction function', function() {
     should.exist(actions.addAction);
     actions.addAction.should.be.a.Function();
+  });
+
+  it('should add custom action', function() {
+    var custom = function custom() {
+      return 'kale';
+    };
+
+    actions.addAction('kale', custom);
+    actions.hasAction('kale').should.be.True();
+    actions['kale'].should.be.a.Function();
+
+    var result = actions['kale']();
+    result.should.eql(custom());
+
+    delete actions['kale'];
   });
 
   it('should have hasAction function', function() {

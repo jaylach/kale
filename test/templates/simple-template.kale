@@ -5,5 +5,12 @@ simple => {
 		four: {{one}},
 		five: {{two}}
 	},
-	six: {{four}}
+	six: {{four}},
+	seven: {{five}} + {{six}},
+	eight: {{seven}} + ' ' + {{eight}} + ' ' + {{nine}}
+}
+
+with_locals => {
+	foo: {{foo}},
+	bar: {{$.bar}}
 }

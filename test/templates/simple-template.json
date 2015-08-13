@@ -7,7 +7,12 @@
         "one": 3,
         "two": 4
       },
-      "four": 5
+      "four": 5,
+      "five": 7,
+      "six": -1,
+      "seven": "You",
+      "eight": "love",
+      "nine": "kale!"
     },
     "expected": {
       "one": 1,
@@ -16,7 +21,21 @@
         "four": 1,
         "five": 2
       },
-      "six": 5
+      "six": 5,
+      "seven": 6,
+      "eight": "You love kale!"
+    }
+  },
+  "with_locals": {
+    "input": {
+      "foo": "bar"
+    },
+    "locals": {
+      "bar": "baz"
+    },
+    "expected": {
+      "foo": "bar",
+      "bar": "baz"
     }
   }
 }

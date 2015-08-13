@@ -1,0 +1,70 @@
+{
+  "standard_actions": {
+    "input": {
+      "first": [
+        "first", "second"
+      ],
+      "sortByNumbersAsc": [ 3, 1, 2 ],
+      "sortByNumbersDesc": [ 2, 1, 3 ],
+      "sortByObjectsAsc": [
+        { "sort": 10 },
+        { "sort": 2 },
+        { "sort": 6 }
+      ],
+      "sortByObjectsDesc": [
+        { "sort": 12 },
+        { "sort": 1 },
+        { "sort": 65 },
+        { "sort": 1 }
+      ],
+      "filter": [
+        { "foo": "bar" },
+        { "foo": "foo" }
+      ],
+      "reverseArray": [ 3, 2, 1 ],
+      "reverseString": "you love kale",
+      "pluck": { "foo": "foo", "bar": "bar", "baz": "baz" },
+      "toUpper": "toUpper",
+      "wontUpper": 2,
+      "toLower": "toLower",
+      "wontLower": [ "some", "array" ],
+      "capitalize": "kale loves you"
+    },
+    "expected": {
+      "first": "first",
+      "sortByNumbersAsc": [ 1, 2, 3 ],
+      "sortByNumbersDesc": [ 3, 2, 1 ],
+      "sortByObjectsAsc": [
+        { "sort": 2 },
+        { "sort": 6 },
+        { "sort": 10 }
+      ],
+      "sortByObjectsDesc": [
+        { "sort": 65 },
+        { "sort": 12 },
+        { "sort": 1 },
+        { "sort": 1 }
+      ],
+      "filter": [ 
+        { "foo": "foo" }
+      ],
+      "reverseArray": [ 1, 2, 3 ],
+      "reverseString": "elak evol uoy",
+      "pluck": "baz",
+      "toUpper": "TOUPPER",
+      "wontUpper": 2,
+      "toLower": "tolower",
+      "wontLower": [ "some", "array" ],
+      "capitalize": "Kale Loves You"
+    }
+  },
+  "custom_actions": {
+    "input": {
+      "foo": "bar"
+    },
+    "expected": {
+      "foo": "bar",
+      "kale": "kale"
+    }
+  }
+}

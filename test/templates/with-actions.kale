@@ -1,0 +1,21 @@
+standard_actions => {
+	first: {{ first | first }},
+	sortByNumbersAsc: {{ sortByNumbersAsc | sortBy }},
+	sortByNumbersDesc: {{ sortByNumbersDesc | sortBy: { order: 'DESC' } }},
+	sortByObjectsAsc: {{ sortByObjectsAsc | sortBy: { prop: 'sort' } }},
+	sortByObjectsDesc: {{ sortByObjectsDesc | sortBy: { prop: 'sort', order: 'DESC' } }},
+	filter: {{ filter | filter: { foo: 'foo' } }},
+	reverseArray: {{ reverseArray | reverse }},
+	reverseString: {{ reverseString | reverse }},
+	pluck: {{ pluck | pluck: 'baz' }},
+	toUpper: {{ toUpper | toUpper }},
+	wontUpper: {{ wontUpper | toUpper }},
+	toLower: {{ toLower | toLower }},
+	wontLower: {{ wontLower | toLower }},
+	capitalize: {{ capitalize | capitalize }}
+}
+
+custom_actions => {
+	foo: {{foo}},
+	kale: {{ _ | kale }}
+}

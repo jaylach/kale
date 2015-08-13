@@ -72,8 +72,8 @@
   },
   "capitalize": {
     "input": [
-      "this is a test"
+      "kale loves you"
     ],
-    "expected": "This Is A Test"
+    "expected": "Kale Loves You"
   }
 }

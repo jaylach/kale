@@ -3,6 +3,7 @@ var rimraf = require('rimraf');
 var should = require('should');
 
 var kale = require('../index');
+var actions = require('../lib/actions');
 
 // Get our test cases
 var templates = fs.readdirSync('test/templates')
@@ -32,12 +33,16 @@ describe('template tests', function() {
         throw ex;
       }
     }
+
+    actions.addAction('kale', function() {
+      return 'kale';
+    })
   });
 
   // Run our test templates
   templates.forEach(function(test) {
     var name = test.replace(/[-.]/g, ' ');
-    it(name, function(done) {
+    describe(name, function() {
       var kalePath = __dirname + '/templates/' + test + '.kale';
       var jsonPath = './templates/' + test + '.json';
 
@@ -46,17 +51,25 @@ describe('template tests', function() {
       var rendered = kale.render(kalePath, kaleOptions);
 
       rendered.forEach(function(tpl) {
-        var template = require('./tmp/' + tpl.name);
-        var result = template(json[tpl.name].input);
+        if ( json[tpl.name] == null ) return;
         
-        result.should.eql(json[tpl.name].expected);
-      });
+        it(tpl.name.replace(/[_]/g, ' '), function() {
+          var template = require('./tmp/' + tpl.name);
 
-      done();
+          var data = json[tpl.name];
+          var input = data.input;
+          var locals = data.locals || {};
+          var expected = data.expected;
+
+          var result = template(input, locals);
+          result.should.eql(expected);
+        });
+      });
     });
   });
 
   after(function() {
     rimraf.sync('test/tmp');
+    delete actions['kale'];
   });
 });
