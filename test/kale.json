@@ -1,0 +1,79 @@
+{
+  "first": {
+    "input": [ 
+      [ "foo", "bar" ] 
+    ],
+    "expected": "foo"
+  },
+  "sortBy": {
+    "input": {
+      "numbers ASC": [ 
+        [ 3, 1, 2 ]
+      ],
+      "numbers DESC": [
+        [ 3, 1, 2 ],
+        { "order": "DESC" }
+      ],
+      "objects ASC": [
+        [ { "foo": 1 }, { "foo": 3 }, { "foo": 2 } ],
+        { "prop": "foo" }
+      ],
+      "objects DESC": [
+        [ { "foo": 1 }, { "foo": 3 }, { "foo": 2 } ],
+        { "prop": "foo", "order": "DESC" }
+      ]
+    },
+    "expected": {
+      "numbers ASC": [ 1, 2, 3 ],
+      "numbers DESC": [ 3, 2, 1 ],
+      "objects ASC": [ { "foo": 1 }, { "foo": 2 }, { "foo": 3 } ],
+      "objects DESC": [ { "foo": 3 }, { "foo": 2 }, { "foo": 1 } ]
+    }
+  },
+  "filter": {
+    "input": [
+      [ { "foo": "foo" }, { "foo": "bar" } ],
+      { "foo": "bar" }
+    ],
+    "expected": [ { "foo": "bar" } ]
+  },
+  "reverse": {
+    "input": {
+      "array": [ 
+        [ 3, 2, 1 ] 
+      ],
+      "string": [
+        "you love kale"
+      ]
+    },
+    "expected": {
+      "array": [ 1, 2, 3 ],
+      "string": "elak evol uoy"
+    }
+  },
+  "pluck": {
+    "input": [
+      { "foo": "foo", "bar": "baz" },
+      "bar"
+    ],
+    "expected": "baz"
+  },
+  "toUpper": {
+    "input": [
+      "foo-bar-baz"
+    ],
+    "expected": "FOO-BAR-BAZ"
+  },
+  "toLower": {
+    "input": [
+      "FOO-BAR-BAZ"
+    ],
+    "expected": "foo-bar-baz"
+  },
+  "capitalize": {
+    "input": [
+      "this is a test"
+    ],
+    "expected": "This Is A Test"
+  }
+}
