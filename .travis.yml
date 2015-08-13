@@ -3,8 +3,11 @@ node_js:
   - "0.11"
   - "0.10"
 
-before_script: npm run-script gen-parser
+sudo: false
+
+before_script: npm run gen-parser
 script: npm test
+after_success: npm run coveralls
 
 notifications:
   email:

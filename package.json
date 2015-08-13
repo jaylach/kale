@@ -26,6 +26,7 @@
     "source-map": "^0.4.4"
   },
   "devDependencies": {
+    "coveralls": "^2.11.3",
     "istanbul": "^0.3.17",
     "jison": "^0.4.15",
     "mocha": "^2.2.5",
@@ -37,6 +38,7 @@
   "scripts": {
     "test": "mocha test",
     "coverage": "istanbul cover -x bin/kale.js -x src/ -x lib/parser.js node_modules/mocha/bin/_mocha test",
+    "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
     "gen-parser": "./node_modules/.bin/jison src/grammar.jison src/tokens.jisonlex -o lib/parser.js -p lalr",
     "prepublish": "npm run gen-parser"
   },
