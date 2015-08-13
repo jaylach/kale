@@ -1,7 +1,7 @@
-[![Build Status](https://img.shields.io/travis/jaylach/kale/master.svg?style=flat)](https://travis-ci.org/jaylach/kale)
+[![Build Status](https://travis-ci.org/jaylach/kale.svg?branch=master)](https://travis-ci.org/jaylach/kale)
 [![Coverage Status](https://coveralls.io/repos/jaylach/kale/badge.svg?branch=master&service=github)](https://coveralls.io/github/jaylach/kale?branch=master)
-[![Dependency Status](https://img.shields.io/david/jaylach/kale.svg?style=flat)](https://david-dm.org/jaylach/kale)
-[![devDependencies Status](https://img.shields.io/david/dev/jaylach/kale.svg?style=flat)](https://david-dm.org/jaylach/kale#info=devDependencies)
+[![Dependency Status](https://david-dm.org/jaylach/kale.svg)](https://david-dm.org/jaylach/kale)
+[![devDependency Status](https://david-dm.org/jaylach/kale/dev-status.svg)](https://david-dm.org/jaylach/kale#info=devDependencies)
 
 overview
 --------
