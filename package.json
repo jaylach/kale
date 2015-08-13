@@ -13,7 +13,7 @@
     "restful"
   ],
   "engines": {
-    "node": ">= 0.10.32"
+    "node": ">= 0.10.26"
   },
   "dependencies": {
     "cli-color": "^1.0.0",
