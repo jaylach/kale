@@ -1,3 +1,8 @@
+[![Build Status](https://img.shields.io/travis/jaylach/kale/master.svg?style=flat)](https://travis-ci.org/jaylach/kale)
+[![Coverage Status](https://img.shields.io/coveralls/jaylach/kale/master.svg?style=flat)](https://coveralls.io/r/jaylach/kale?branch=master)
+[![Dependency Status](https://img.shields.io/david/jaylach/kale.svg?style=flat)](https://david-dm.org/jaylach/kale)
+[![devDependencies Status](https://img.shields.io/david/dev/jaylach/kale.svg?style=flat)](https://david-dm.org/jaylach/kale#info=devDependencies)
+
 overview
 --------
 kale is a node.js templating engine for your JSON data. It allows you to treat your JSON data
