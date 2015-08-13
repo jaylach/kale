@@ -23,7 +23,7 @@ Please note that kale is currently in an _alpha_ state. Most features are somewh
 
 installation
 ------------
-`$ npm install kale@beta`
+`$ npm install kale`
 
 using kale
 ----------
@@ -251,7 +251,7 @@ command line
 
 After installing the latest version of node, install with:
 
-`$ npm install kale@beta -g`
+`$ npm install kale -g`
 
 and run with:
 
