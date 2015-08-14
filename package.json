@@ -45,9 +45,9 @@
   "homepage": "https://github.com/jaylach/kale",
   "bugs": "https://github.com/jaylach/kale/issues",
   "repository": "https://github.com/jaylach/kale.git",
-  "author": "Jason LaChapelle <jaylach@gmail.com>",
+  "author": "Jason LaChapelle <me@jlach.com>",
   "contributors": [
-    "Jason LaChapelle <jaylach@gmail.com>"
+    "Jason LaChapelle <me@jlach.com>"
   ],
   "license": "MIT"
 }
