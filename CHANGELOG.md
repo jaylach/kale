@@ -15,3 +15,7 @@ v0.7.0
 	* FILE is is usually going to be a relative path to your COMPILED template, though it could be any string
 	  accepted by node's required. there is no need to include `.js` or `.kale` at the end of FILE
 	* VARIABLE is any valid JavaScript variable. it is how you will reference the imported template in your action
+* the `{{` and `}}` "binding brackets" are now optional when _not_ using an action. if you're using an action, they 
+  are still required
+* when the destination property name matches the binding property name, you can now omit the `key: value` pair, and 
+  instead just use `key`. i.e: instead of `userName: userName,` or `userName: {{userName}},`, you can now use just `userName,`

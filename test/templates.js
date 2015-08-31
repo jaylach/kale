@@ -8,10 +8,10 @@ var actions = require('../lib/actions');
 // Get our test cases
 var templates = fs.readdirSync('test/templates')
   .filter(function(file) {
-    return file.indexOf('kale') >= 0;
+    return file.indexOf('json') >= 0;
   })
   .map(function(file) {
-    return file.replace('.kale', '');
+    return file.replace('.json', '');
   });
 
 var kaleOptions = { 
@@ -38,35 +38,28 @@ describe('template tests', function() {
     })
   });
 
+  kale.render(__dirname + '/templates/*.kale', kaleOptions);
+
   // Run our test templates
   templates.forEach(function(test) {
     var name = test.replace(/[-.]/g, ' ');
+    var json = require('./templates/' + test + '.json');
+
     describe(name, function() {
-      var kalePath = __dirname + '/templates/' + test + '.kale';
-      var jsonPath = './templates/' + test + '.json';
+      var keys = Object.keys(json);
+      keys.forEach(function(key) {
+        it(key.replace(/[_]/g, ' '), function() {
+          var rendered = require('./tmp/' + key + '.js');
+          var data = json[key];
 
-      // Get our JSON and render our template
-      var json = require(jsonPath);
-      kale.render(kalePath, kaleOptions);
-
-      var rendered = require('./tmp/' + test + '.js');
-      console.log(rendered);
-
-      /*rendered.forEach(function(tpl) {
-        if ( json[tpl.name] == null ) return;
-        
-        it(tpl.name.replace(/[_]/g, ' '), function() {
-          var template = require('./tmp/' + tpl.name);
-
-          var data = json[tpl.name];
           var input = data.input;
           var locals = data.locals || {};
           var expected = data.expected;
 
-          var result = template(input, locals);
+          var result = rendered(input, locals);
           result.should.eql(expected);
-        });
-      });*/
+        })
+      });
     });
   });
 

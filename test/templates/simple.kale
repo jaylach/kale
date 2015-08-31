@@ -1,0 +1,10 @@
+{
+	one, two,
+	three: {
+		four: one,
+		five: two
+	},
+	six: four,
+	seven: five + six,
+	eight: seven + ' ' + eight + ' ' + nine
+}

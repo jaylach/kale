@@ -28,14 +28,18 @@
   },
   "with_locals": {
     "input": {
-      "foo": "bar"
+      "foo": "bar",
+      "baz": {
+        "foo": "bar"
+      }
     },
     "locals": {
       "bar": "baz"
     },
     "expected": {
       "foo": "bar",
-      "bar": "baz"
+      "bar": "baz",
+      "baz": "bar"
     }
   }
 }

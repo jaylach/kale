@@ -1,0 +1,5 @@
+{
+	foo,
+	baz: baz['foo'],
+	bar: $.bar
+}

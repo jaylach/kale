@@ -78,6 +78,11 @@ property
     {
       $$ = new yy.PropertyNode(@1.first_line, @1.first_column, $1, $3);
     }
+  | IDENTIFIER
+    {
+      var value = new yy.ValueNode(@1.first_line, @1.first_column, new yy.AccessorNode(@1.first_line, @1.first_column, $1));
+      $$ = new yy.PropertyNode(@1.first_line, @1.first_column, $1, value);
+    }
   ;
 
 property_list
@@ -133,14 +138,14 @@ value
 
 binding 
   : '{{' accessor '}}'
-    {
-      $$ = $2;
-    }
+    { $$ = $2; }
   | '{{' accessor '|' action_list '}}'
     {
       $$ = $2;
       $$.actions = $4;
     }
+  | accessor
+    { $$ = $1; }
   ;
 
 action
@@ -151,10 +156,6 @@ action
   | IDENTIFIER ':' action_parameter_list
     {
       $$ = new yy.ActionNode(@1.first_line, @1.first_column, $1, $3);
-    }
-  | '@' IDENTIFIER
-    {
-      $$ = new yy.ActionNode(@1.first_line, @1.first_column, '@' + $2);
     }
   ;
 

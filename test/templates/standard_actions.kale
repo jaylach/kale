@@ -1,4 +1,4 @@
-standard_actions => {
+ {
 	first: {{ first | first }},
 	sortByNumbersAsc: {{ sortByNumbersAsc | sortBy }},
 	sortByNumbersDesc: {{ sortByNumbersDesc | sortBy: { order: 'DESC' } }},
@@ -13,9 +13,4 @@ standard_actions => {
 	toLower: {{ toLower | toLower }},
 	wontLower: {{ wontLower | toLower }},
 	capitalize: {{ capitalize | capitalize }}
-}
-
-custom_actions => {
-	foo: {{foo}},
-	kale: {{ _ | kale }}
 }
