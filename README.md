@@ -111,7 +111,7 @@ also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`
 
 _By using the pipe (`|`) we are able to call actions and/or embed other templates. When using the pipe, the identifier before
 the pipe is the first parameter that will be passed to the action. This identifier is either a binding on the input object or
-an underscore (`\_`), which means use the full input object. If using another template, you must first import that template. Note
+an underscore, which means use the full input object. If using another template, you must first import that template. Note
 the syntax (`import FILE as VARIABLE`). The FILE is any string accepted by node's require function. The variable name you give the
 imported file is how you will reference it in your action._
 
