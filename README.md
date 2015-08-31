@@ -65,7 +65,7 @@ _Note that all templates return a new object / array and will not modify the exi
 {
   userName: "awesome_man",
   userId: 42,
-  <strong>userGroup: {{groupId}}</strong>
+  <strong>userGroup: groupId</strong>
 }
 </pre>
 
@@ -79,8 +79,8 @@ also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`
 {
   userName: "awesome_man",
   userId: 42,
-  userGroup: {{groupId}},
-  <strong>full_name: {{firstName}} + ' ' + {{lastName}}</strong>
+  userGroup: groupId,
+  <strong>full_name: firstName + ' ' + lastName</strong>
 }
 </pre>
 
@@ -93,8 +93,8 @@ also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`
 {
   userName: "awesome_man",
   userId: 42,
-  userGroup: {{groupId}},
-  full_name: {{firstName}} + ' ' + {{lastName}},
+  userGroup: groupId,
+  full_name: firstName + ' ' + lastName,
   <strong>address: {{_ | address}}</strong>
 }
 </pre>
@@ -102,10 +102,9 @@ also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`
 <pre>
 // address.kale
 {
-  street: {{street1}},
-  city: {{city}},
-  state: {{state}},
-  zipCode: {{zip_code}}
+  street: street1,
+  city, state,
+  zipCode: zip_code
 }
 </pre>
 
@@ -122,8 +121,8 @@ imported file is how you will reference it in your action._
 {
   userName: "awesome_man",
   userId: 42,
-  userGroup: {{groupId}},
-  full_name: {{firstName}} + ' ' + {{lastName}},
+  userGroup: groupId,
+  full_name: firstName + ' ' + lastName,
   address: {{_ | @address}},
   <strong>homePhone: {{phones | filter: { type: 'home' } 
                       | first
@@ -188,9 +187,9 @@ This example is taken almost directly from `example1.js` in the examples folder.
 ```
 // user.kale
 {
-  id: {{userId}},
-  userName: {{userName}},
-  firstName: {{firstName}},
+  id: userId,
+  userName,
+  firstName: firstName,
   homePhone: {{ phones | filter: { type: 'home' }
                        | first
                        | pluck: 'number' }},
@@ -202,14 +201,13 @@ This example is taken almost directly from `example1.js` in the examples folder.
 
 // address.kale
 {
-  short: {{street1}} + '\n' + 
-         {{city}} + ', ' + 
-         {{state}} + ' ' + 
-         {{zipCode}},  
-  street: {{street1}},
-  city: {{city}},
-  state: {{state}},
-  zip: {{zipCode}}
+  short: street1 + '\n' + 
+         city + ', ' + 
+         state + ' ' + 
+         zipCode,  
+  street: street1,
+  city, state,
+  zip: zipCode
 }
 ```
 
