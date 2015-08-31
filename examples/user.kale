@@ -1,4 +1,6 @@
-user => {
+import './address' as address
+
+{
   id: {{userId}},
   userName: {{userName}},
   fullName: {{firstName}} + {{lastName}},
@@ -8,16 +10,5 @@ user => {
   mobilePhone: {{ phones | filter: { type: 'mobile' }
                          | first
                          | pluck: 'number' }},
-  address: {{ _ | @address }}
-}
-
-address => {
-  short: {{street1}} + '\n' + 
-         {{city}} + ', ' + 
-         {{state}} + ' ' + 
-         {{zipCode}},  
-  street: {{street1}},
-  city: {{city}},
-  state: {{state}},
-  zip: {{zipCode}}
+  address: {{ _ | address }}
 }

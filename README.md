@@ -21,6 +21,11 @@ kale sets out with a few main goals in mind:
 Please note that kale is currently in an _alpha_ state. Most features are somewhere between Stability 1
 (Experimental) and Stability 2 (Unstable).
 
+breaking changes
+----------------
+the latest version of kale (0.7.0) introduces some breaking changes. you can find the complete changelog
+in the [CHANGELOG.md](CHANGELOG.md) file.
+
 installation
 ------------
 `$ npm install kale`
@@ -35,7 +40,8 @@ using just that object. If you pass kale an array it will apply the template to 
 **To create a new template:**
 
 <pre>
-templateName => {
+// template.kale
+{
   // Properties go here
 }
 </pre>
@@ -45,7 +51,8 @@ _Note that all templates return a new object / array and will not modify the exi
 **To map a new property, with a string or number value:**
 
 <pre>
-user => {
+// user.kale
+{
   <strong>userName: "awesome_man"</strong>,
   <strong>userId: 42</strong>
 }
@@ -54,7 +61,8 @@ user => {
 **To mape a new property, with a value taken from the input object:**
 
 <pre>
-user => {
+// user.kale
+{
   userName: "awesome_man",
   userId: 42,
   <strong>userGroup: {{groupId}}</strong>
@@ -67,7 +75,8 @@ also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`
 **To concatenate binding values:**
 
 <pre>
-user => {
+// user.kale
+{
   userName: "awesome_man",
   userId: 42,
   userGroup: {{groupId}},
@@ -78,15 +87,21 @@ user => {
 **To embed one template into another:**
 
 <pre>
-user => {
+// user.kale
+<strong>import './address' as address</strong>
+
+{
   userName: "awesome_man",
   userId: 42,
   userGroup: {{groupId}},
   full_name: {{firstName}} + ' ' + {{lastName}},
-  <strong>address: {{_ | @address}}</strong>
+  <strong>address: {{_ | address}}</strong>
 }
+</pre>
 
-address => {
+<pre>
+// address.kale
+{
   street: {{street1}},
   city: {{city}},
   state: {{state}},
@@ -96,14 +111,15 @@ address => {
 
 _By using the pipe (`|`) we are able to call actions and/or embed other templates. When using the pipe, the identifier before
 the pipe is the first parameter that will be passed to the action. This identifier is either a binding on the input object or
-an underscore, which means use the full input object. Prefixing an action with the at symbol (`@`) tells kale to use a template
-with that name. Note that kale will currenly only look for other templates if they are compiled in the same location as the 
-calling template._
+an underscore (`_`), which means use the full input object. If using another template, you must first import that template. Note
+the syntax (`import FILE as VARIABLE`). The FILE is any string accepted by node's require function. The variable name you give the
+imported file is how you will reference it in your action._
 
 **To call an action with multiple arguments, and/or call multiple actions:**
 
 <pre>
-user => {
+// user.kale
+{
   userName: "awesome_man",
   userId: 42,
   userGroup: {{groupId}},
@@ -157,7 +173,7 @@ actions.addAction('simplePluck', simplePluck);
 
 <pre>
 // some_file.kale
-some_template => {
+{
   <strong>reversed: {{items | reverse}}</strong>,
   <strong>simply_plucked: {{obj | pluck: 'someProp' }}</strong>
 }
@@ -170,8 +186,8 @@ kale template are compiled directly to JavaScript. When parsing and compiling a 
 This example is taken almost directly from `example1.js` in the examples folder.
 
 ```
-// example1.kale
-user => {
+// user.kale
+{
   id: {{userId}},
   userName: {{userName}},
   firstName: {{firstName}},
@@ -184,7 +200,8 @@ user => {
   address: {{ _ | @address }}
 }
 
-address => {
+// address.kale
+{
   short: {{street1}} + '\n' + 
          {{city}} + ', ' + 
          {{state}} + ' ' + 

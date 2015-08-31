@@ -1,6 +1,6 @@
 ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
 number          ^(\d*\.?\d+)(?:"e"[+-]?\d+)?
-glyph           [+(){}\[\]|@!:,.+]
+glyph           [+(){}\[\]|@!:,.+;]
 
 %%
 
@@ -19,6 +19,10 @@ glyph           [+(){}\[\]|@!:,.+]
 '{{'            { return '{{'; }
 '}}'            { return '}}'; }
 {glyph}         { return yytext; }
+
+/* Keywords */
+'import'		{ return 'IMPORT'; }
+'as'			{ return 'AS'; }
 
 /* General */
 {number}        { return 'NUMBER'; }

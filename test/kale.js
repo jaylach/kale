@@ -19,14 +19,12 @@ describe('kale tests', function() {
     kale.render.should.be.a.Function();
   });
 
-  it('should render to string', function() {
-    var result = kale.render('test/kale.kale');
-    result.should.be.an.Array();
+  it('should require an output path', function() {
+    var result = function() {
+      return kale.render('test/kale.kale');
+    };
 
-    var tpl = result[0];
-    tpl.should.be.an.Object();
-    tpl.name.should.equal('kale');
-    tpl.code.should.be.a.String();
+    result.should.throw();
   });
 });
 

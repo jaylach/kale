@@ -5,25 +5,39 @@
 %%
 
 template
-  : template_def_list EOF
+  : import_list template_def EOF
+    {
+      $2.imports = $1;
+      return $2;
+    }
+  | template_def EOF
     { return $1; }
   ;
 
-template_def_list 
-  : template_def
+import
+  : IMPORT STRING AS IDENTIFIER 
+    { 
+      $$ = new yy.ImportNode(@1.first_line, @1.first_column, $4, $2);
+    }
+  ;
+
+import_list
+  : import
     {
       if ( !Array.isArray($1) ) {
         $$ = [ $1 ];
       }
     }
-  | template_def_list template_def
-    { $$ = $1.concat($2); }
+  | import_list import 
+    {
+      $$ = $1.concat($2);
+    }
   ;
 
 template_def
-  : IDENTIFIER '=>' block_with_actions
+  : block_with_actions
     {
-      $$ = new yy.TemplateNode(@1.first_line, @1.first_column, $1, $3);
+      $$ = new yy.TemplateNode(@1.first_line, @1.first_column, $1);
     }
   ;
 

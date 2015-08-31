@@ -16,8 +16,7 @@ var templates = fs.readdirSync('test/templates')
 
 var kaleOptions = { 
   pretty: true, 
-  outPath: 'test/tmp',
-  _banner: 'var $engine = require("../../lib/engine");'
+  outPath: 'test/tmp'
 };
 
 // -----
@@ -48,9 +47,12 @@ describe('template tests', function() {
 
       // Get our JSON and render our template
       var json = require(jsonPath);
-      var rendered = kale.render(kalePath, kaleOptions);
+      kale.render(kalePath, kaleOptions);
 
-      rendered.forEach(function(tpl) {
+      var rendered = require('./tmp/' + test + '.js');
+      console.log(rendered);
+
+      /*rendered.forEach(function(tpl) {
         if ( json[tpl.name] == null ) return;
         
         it(tpl.name.replace(/[_]/g, ' '), function() {
@@ -64,7 +66,7 @@ describe('template tests', function() {
           var result = template(input, locals);
           result.should.eql(expected);
         });
-      });
+      });*/
     });
   });
 
