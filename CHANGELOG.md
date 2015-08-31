@@ -18,4 +18,4 @@ v0.7.0
 * the `{{` and `}}` "binding brackets" are now optional when _not_ using an action. if you're using an action, they 
   are still required
 * when the destination property name matches the binding property name, you can now omit the `key: value` pair, and 
-  instead just use `key`. i.e: instead of `userName: userName,` or `userName: {{userName}},`, you can now use just `userName,`
+  instead just use `key`. i.e: instead of `userName: userName` or `userName: {{userName}}`, you can now use just `userName`
