@@ -44,12 +44,10 @@ var options = {
 program.args.forEach(function(file) {
   var start = new Date();
   log('Rendering', clc.bold(file), '...');
-  var out = kale.render(file, options);
+  kale.render(file, options);
 
   var end = new Date();
   var diff = (end - start) / 1000;
 
-  out.forEach(function(result) {
-    log('Rendered', clc.bold(result.name), 'to', clc.bold(result.file), '[' + diff + 's]');
-  });
+  log('Rendered', clc.bold(file), 'to', clc.bold(file.replace('.kale', '.js')), '[' + diff + 's]');
 });

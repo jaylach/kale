@@ -23,7 +23,7 @@ Please note that kale is currently in an _alpha_ state. Most features are somewh
 
 breaking changes
 ----------------
-the latest version of kale (0.7.0) introduces some breaking changes. you can find the complete changelog
+the latest version of kale (0.7.1) introduces some breaking changes. you can find the complete changelog
 in the [CHANGELOG.md](CHANGELOG.md) file.
 
 installation
