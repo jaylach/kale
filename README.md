@@ -195,7 +195,7 @@ kale template are compiled directly to JavaScript. When parsing and compiling a 
 
 this example is taken almost directly from `example1.js` in the examples folder.
 
-```json
+```javascript
 // user.kale
 
 import address from './address'
@@ -214,7 +214,7 @@ import address from './address'
 }
 ```
 
-```json
+```javascript
 // address.kale
 
 {
