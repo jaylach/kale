@@ -177,7 +177,7 @@ var simplePluck = function simplePluck(value, prop) {
 module.exports.simplePluck = simplePluck;
 ```
 
-<pre>
+<pre lang="javascript">
 // some_file.kale
 
 import reverse from './reverse'
