@@ -123,8 +123,8 @@ note that any custom actions / templates must be imported. the standard actions 
   full_name: firstName + ' ' + lastName,
   address: _.address(),
   <strong>homePhone: phones.filter({ type: 'home' })
-                           .first()
-                           .pluck('number')</strong>
+                   .first()
+                   .pluck('number')</strong>
 }
 </pre>
 
