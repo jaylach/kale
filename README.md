@@ -39,7 +39,7 @@ using just that object. If you pass kale an array it will apply the template to 
 
 **To create a new template:**
 
-<pre>
+<pre lang="javascript">
 // template.kale
 
 {
@@ -51,7 +51,7 @@ _note that all templates return a new object / array and will not modify the exi
 
 **to map a new property, with a string or number value:**
 
-<pre>
+<pre lang="javascript">
 // user.kale
 
 {
@@ -62,7 +62,7 @@ _note that all templates return a new object / array and will not modify the exi
 
 **to mape a new property, with a value taken from the input object:**
 
-<pre>
+<pre lang="javascript">
 // user.kale
 
 {
@@ -77,7 +77,7 @@ also use standard javascript accessors, i.e: `some.value`, `some.other["value"]`
 
 **to concatenate binding values:**
 
-<pre>
+<pre lang="javascript">
 // user.kale
 
 {
@@ -90,7 +90,7 @@ also use standard javascript accessors, i.e: `some.value`, `some.other["value"]`
 
 **to embed one template into another:**
 
-<pre>
+<pre lang="javascript">
 // user.kale
 
 <strong>import address from './address'</strong>
@@ -104,7 +104,7 @@ also use standard javascript accessors, i.e: `some.value`, `some.other["value"]`
 }
 </pre>
 
-<pre>
+<pre lang="javascript">
 // address.kale
 
 {
@@ -120,7 +120,7 @@ note that any custom actions / templates must be imported. the standard actions 
 
 **we can chain actions together, just like we'd change functions:**
 
-<pre>
+<pre lang="javascript">
 // user.kale
 
 {
