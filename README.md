@@ -41,6 +41,7 @@ using just that object. If you pass kale an array it will apply the template to 
 
 <pre>
 // template.kale
+
 {
   // properties go here
 }
@@ -52,6 +53,7 @@ _note that all templates return a new object / array and will not modify the exi
 
 <pre>
 // user.kale
+
 {
   <strong>userName: "awesome_man"</strong>,
   <strong>userId: 42</strong>
@@ -62,6 +64,7 @@ _note that all templates return a new object / array and will not modify the exi
 
 <pre>
 // user.kale
+
 {
   userName: "awesome_man",
   userId: 42,
@@ -76,6 +79,7 @@ also use standard javascript accessors, i.e: `some.value`, `some.other["value"]`
 
 <pre>
 // user.kale
+
 {
   userName: "awesome_man",
   userId: 42,
@@ -88,6 +92,7 @@ also use standard javascript accessors, i.e: `some.value`, `some.other["value"]`
 
 <pre>
 // user.kale
+
 <strong>import address from './address'</strong>
 
 {
@@ -101,6 +106,7 @@ also use standard javascript accessors, i.e: `some.value`, `some.other["value"]`
 
 <pre>
 // address.kale
+
 {
   street: street1,
   city, state,
@@ -116,6 +122,7 @@ note that any custom actions / templates must be imported. the standard actions 
 
 <pre>
 // user.kale
+
 {
   userName: "awesome_man",
   userId: 42,
@@ -172,6 +179,7 @@ module.exports.simplePluck = simplePluck;
 
 <pre>
 // some_file.kale
+
 import reverse from './reverse'
 import * from './other_actions'
 
@@ -187,8 +195,9 @@ kale template are compiled directly to JavaScript. When parsing and compiling a 
 
 this example is taken almost directly from `example1.js` in the examples folder.
 
-```
+```json
 // user.kale
+
 import address from './address'
 
 {
@@ -203,8 +212,11 @@ import address from './address'
                      .pluck('number'),
   address: _.address()
 }
+```
 
+```json
 // address.kale
+
 {
   short: street1 + '\n' + 
          city + ', ' + 
@@ -218,6 +230,7 @@ import address from './address'
 
 ```javascript
 // example1.js
+
 var kale = require('kale');
 
 // Note that kale provides a single render function which accepts a single file.
