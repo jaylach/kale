@@ -6,19 +6,19 @@ some changes to the grammar that (i hope) will make these templates easier to wo
 
 ##### Breaking Changes
 
-* the `import` grammar has been changed from `import FILE as VARIABLE` to `import VARIABLE from FILE` to keep standard with ES6 spec
+* the `import` grammar has been changed from `import FILE as VARIABLE` to `import VARIABLE from FILE` in order to match ES6 spec
 * the way you call actions is now more in line with regular javascript (see below)
-* the `{{` and `}}` binding brackets have been removed from the grammar completely
+* the `{{` and `}}` binding brackets have been completely removed from the grammar
 * `kale/actions` has been removed. custom actions are now imported using `import` (see below)
 
 ##### Other Changes
 
-* the way actions are called have been changed to be more like javascript rather than angular
-	* you call actions now using `variable.ACTION(...)`
-	* actions can be changed together by using `variable.ACTION1(...).ACTION2(...)`
+* the way actions are called has been changed to be more javascript-like
+	* actions are now called using `variable.ACTION(...)`
+	* actions can be chained together by using `variable.ACTION1(...).ACTION2(...)`
 	* if the action is the first one in the chain, the value of `variable` will be passed as the first 
 	  argument to the action.
-	* if the action is the second (or more) one in the chain, the result of the previous actions will 
+	* if the action is second (or more) in the chain, the result of the previous actions will 
 	  be passed as the first argument to the action
 * the way custom actions are made usable by a kale template has been drastically changed
 	* custom actions must now be imported using the `import` keyword
