@@ -10,25 +10,25 @@ as you would any other view. The gain here is that you can separate your view lo
 controllers and models. kale can transform to and from JSON natively. There are plans to, 
 eventually, add in XML and YAML support as well. kale is heavily inspired by the Ruby 
 gem [rabl](https://github.com/nesquena/rabl). The syntax was designed to be very similar to JSON, 
-as it's familiar to most web developers. It also borrows a lot of conventions from the AngularJS project. 
+as it's familiar to most web developers. 
 
 kale sets out with a few main goals in mind:
 
-* An easy, familiar, way to separate the view logic from your data within RESTful APIs
-* A simple, lightweight templating language that makes sense for application data
-* Ability to serve your API data in different formats from the same view
+* an easy, familiar, way to separate the view logic from your data within RESTful APIs
+* a simple, lightweight templating language that makes sense for application data
+* ability to serve your API data in different formats from the same view
 
-Please note that kale is currently in an _alpha_ state. Most features are somewhere between Stability 1
+please note that kale is currently in a _beta_ state. Most features are somewhere between Stability 1
 (Experimental) and Stability 2 (Unstable).
 
 breaking changes
 ----------------
-the latest version of kale (0.7.1) introduces some breaking changes. you can find the complete changelog
+the latest version of kale (1.0.0) introduces some breaking changes. you can find the complete changelog
 in the [CHANGELOG.md](CHANGELOG.md) file.
 
 installation
 ------------
-`$ npm install kale`
+`$ npm install kale@beta` _note: this version is not yet published to npm._
 
 using kale
 ----------
@@ -42,13 +42,13 @@ using just that object. If you pass kale an array it will apply the template to 
 <pre>
 // template.kale
 {
-  // Properties go here
+  // properties go here
 }
 </pre>
 
-_Note that all templates return a new object / array and will not modify the existing input. It is, effectively, a map._
+_note that all templates return a new object / array and will not modify the existing input. It is, effectively, a map._
 
-**To map a new property, with a string or number value:**
+**to map a new property, with a string or number value:**
 
 <pre>
 // user.kale
@@ -58,7 +58,7 @@ _Note that all templates return a new object / array and will not modify the exi
 }
 </pre>
 
-**To mape a new property, with a value taken from the input object:**
+**to mape a new property, with a value taken from the input object:**
 
 <pre>
 // user.kale
@@ -69,10 +69,10 @@ _Note that all templates return a new object / array and will not modify the exi
 }
 </pre>
 
-_The value of `userGroup` will be set to whatever value the `inputKey` property is of the input object. Note that you can 
-also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`, etc._
+_the value of `userGroup` will be set to whatever value the `inputKey` property is of the input object. note that you can 
+also use standard javascript accessors, i.e: `some.value`, `some.other["value"]`, etc._
 
-**To concatenate binding values:**
+**to concatenate binding values:**
 
 <pre>
 // user.kale
@@ -84,18 +84,18 @@ also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`
 }
 </pre>
 
-**To embed one template into another:**
+**to embed one template into another:**
 
 <pre>
 // user.kale
-<strong>import './address' as address</strong>
+<strong>import address from './address'</strong>
 
 {
   userName: "awesome_man",
   userId: 42,
   userGroup: groupId,
   full_name: firstName + ' ' + lastName,
-  <strong>address: {{_ | address}}</strong>
+  <strong>address: _.address()</strong>
 }
 </pre>
 
@@ -108,13 +108,11 @@ also use standard JavaScript accessors, i.e: `some.value`, `some.other["value"]`
 }
 </pre>
 
-_By using the pipe (`|`) we are able to call actions and/or embed other templates. When using the pipe, the identifier before
-the pipe is the first parameter that will be passed to the action. This identifier is either a binding on the input object or
-an underscore, which means use the full input object. If using another template, you must first import that template. Note
-the syntax (`import FILE as VARIABLE`). The FILE is any string accepted by node's require function. The variable name you give the
-imported file is how you will reference it in your action._
+_actions are used by calling them as if they were a function of the identifier. the identifier the action is called on will
+be passed to the action as the first parameter, and any supplied arguments will be passed in the order they were supplied.
+note that any custom actions / templates must be imported. the standard actions provided by kale will be imported by default._
 
-**To call an action with multiple arguments, and/or call multiple actions:**
+**we can chain actions together, just like we'd change functions:**
 
 <pre>
 // user.kale
@@ -123,14 +121,14 @@ imported file is how you will reference it in your action._
   userId: 42,
   userGroup: groupId,
   full_name: firstName + ' ' + lastName,
-  address: {{_ | @address}},
-  <strong>homePhone: {{phones | filter: { type: 'home' } 
-                      | first
-                      | pluck: 'number' }}</strong>
+  address: _.address(),
+  <strong>homePhone: phones.filter({ type: 'home' })
+                           .first()
+                           .pluck('number')</strong>
 }
 </pre>
 
-Kale provides the following actions by default: 
+kale provides the following actions by default: 
 
 * first - _uses the first item in an array_
 * sortBy(args: Object { prop, order }) - _sort an array of objects by specified `prop`, in the specified `order`_
@@ -141,14 +139,13 @@ Kale provides the following actions by default:
 * toLower - _convert a string to lower case_
 * capitalize - _capitalize Every Word In A String_
 
-**To create your own actions**
+**to create your own actions**
 
 ```javascript
-// some_file.js
-var actions = require('kale/actions');
+// reverse.js
 
 // reverse()
-var reverse = function reverse(value) {
+module.exports = function reverse(value) {
   if ( Array.isArray(value) ) {
     return value.reverse();
   }
@@ -156,6 +153,10 @@ var reverse = function reverse(value) {
     return value.split('').reverse().join('');
   }
 }; //- reverse()
+```
+
+```javascript
+// other_actions.js
 
 // simplePluck()
 var simplePluck = function simplePluck(value, prop) {
@@ -166,15 +167,17 @@ var simplePluck = function simplePluck(value, prop) {
   return value;
 }; //- simplePluck()
 
-actions.addAction('reverse', reverse);
-actions.addAction('simplePluck', simplePluck);
+module.exports.simplePluck = simplePluck;
 ```
 
 <pre>
 // some_file.kale
+import reverse from './reverse'
+import * from './other_actions'
+
 {
-  <strong>reversed: {{items | reverse}}</strong>,
-  <strong>simply_plucked: {{obj | pluck: 'someProp' }}</strong>
+  <strong>reversed: items.reverse()</strong>,
+  <strong>simply_plucked: obj.simplePluck('someProp')</strong>
 }
 </pre>
 
@@ -182,21 +185,23 @@ actions.addAction('simplePluck', simplePluck);
 
 kale template are compiled directly to JavaScript. When parsing and compiling a template, kale will create a new JavaScript file in the specified location. The file wil be named to whatever the template name is, and you can include this into your node app just like you'd require any other module. 
 
-This example is taken almost directly from `example1.js` in the examples folder.
+this example is taken almost directly from `example1.js` in the examples folder.
 
 ```
 // user.kale
+import address from './address'
+
 {
   id: userId,
   userName,
-  firstName: firstName,
-  homePhone: {{ phones | filter: { type: 'home' }
-                       | first
-                       | pluck: 'number' }},
-  mobilePhone: {{ phones | filter: { type: 'mobile' }
-                         | first
-                         | pluck: 'number' }},
-  address: {{ _ | @address }}
+  fullName: firstName + lastName,
+  homePhone: phones.filter({ type: 'home' })
+                   .first()
+                   .pluck('number'),
+  mobilePhone: phones.filter({ type: 'mobile' })
+                     .first()
+                     .pluck('number'),
+  address: _.address()
 }
 
 // address.kale
@@ -266,7 +271,7 @@ command line
 
 After installing the latest version of node, install with:
 
-`$ npm install kale -g`
+`$ npm install kale@beta -g` _note: this version is not yet published to npm._
 
 and run with:
 

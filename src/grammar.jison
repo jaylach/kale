@@ -15,9 +15,9 @@ template
   ;
 
 import
-  : IMPORT STRING AS IDENTIFIER 
+  : IMPORT import_identifier FROM STRING
     { 
-      $$ = new yy.ImportNode(@1.first_line, @1.first_column, $4, $2);
+      $$ = new yy.ImportNode(@1.first_line, @1.first_column, $2, $4);
     }
   ;
 
@@ -32,6 +32,11 @@ import_list
     {
       $$ = $1.concat($2);
     }
+  ;
+
+import_identifier
+  : IDENTIFIER
+  | '*'
   ;
 
 template_def
@@ -137,23 +142,20 @@ value
   ;
 
 binding 
-  : '{{' accessor '}}'
-    { $$ = $2; }
-  | '{{' accessor '|' action_list '}}'
+  : accessor
+  | accessor '.' action_list
     {
-      $$ = $2;
-      $$.actions = $4;
+      $$ = $1;
+      $$.actions = $3;
     }
-  | accessor
-    { $$ = $1; }
   ;
 
 action
-  : IDENTIFIER
+  : IDENTIFIER '(' ')'
     { 
       $$ = new yy.ActionNode(@1.first_line, @1.first_column, $1);
     }
-  | IDENTIFIER ':' action_parameter_list
+  | IDENTIFIER '(' action_parameter_list ')'
     {
       $$ = new yy.ActionNode(@1.first_line, @1.first_column, $1, $3);
     }
@@ -166,7 +168,7 @@ action_list
         $$ = [ $1 ];
       }
     }
-  | action_list '|' action
+  | action_list '.' action
     {
       $$ = $1.concat($3);
     }

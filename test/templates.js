@@ -3,7 +3,6 @@ var rimraf = require('rimraf');
 var should = require('should');
 
 var kale = require('../index');
-var actions = require('../lib/actions');
 
 // Get our test cases
 var templates = fs.readdirSync('test/templates')
@@ -32,10 +31,6 @@ describe('template tests', function() {
         throw ex;
       }
     }
-
-    actions.addAction('kale', function() {
-      return 'kale';
-    })
   });
 
   kale.render(__dirname + '/templates/*.kale', kaleOptions);
@@ -64,7 +59,6 @@ describe('template tests', function() {
   });
 
   after(function() {
-    rimraf.sync('test/tmp');
-    delete actions['kale'];
+    //rimraf.sync('test/tmp');
   });
 });

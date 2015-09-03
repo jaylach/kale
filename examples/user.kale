@@ -1,14 +1,14 @@
-import './address' as address
+import address from './address'
 
 {
   id: userId,
   userName,
   fullName: firstName + lastName,
-  homePhone: {{ phones | filter: { type: 'home' }
-                       | first
-                       | pluck: 'number' }},
-  mobilePhone: {{ phones | filter: { type: 'mobile' }
-                         | first
-                         | pluck: 'number' }},
-  address: {{ _ | address }}
+  homePhone: phones.filter({ type: 'home' })
+                   .first()
+                   .pluck('number'),
+  mobilePhone: phones.filter({ type: 'mobile' })
+                     .first()
+                     .pluck('number'),
+  address: _.address()
 }

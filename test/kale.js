@@ -36,31 +36,6 @@ describe('action tests', function() {
     actions.should.be.an.Object();
   });
 
-  it('should have addAction function', function() {
-    should.exist(actions.addAction);
-    actions.addAction.should.be.a.Function();
-  });
-
-  it('should add custom action', function() {
-    var custom = function custom() {
-      return 'kale';
-    };
-
-    actions.addAction('kale', custom);
-    actions.hasAction('kale').should.be.True();
-    actions['kale'].should.be.a.Function();
-
-    var result = actions['kale']();
-    result.should.eql(custom());
-
-    delete actions['kale'];
-  });
-
-  it('should have hasAction function', function() {
-    should.exist(actions.hasAction);
-    actions.hasAction.should.be.a.Function();
-  });
-
   // Standard Action Tests
 
   // setupActionTest()
@@ -79,7 +54,6 @@ describe('action tests', function() {
   var standardActions = require('./kale.json');
   Object.keys(standardActions).forEach(function(key) {
     it(key + ' should exist', function() {
-      actions.hasAction(key).should.be.True();
       actions[key].should.be.a.Function();
     });
 

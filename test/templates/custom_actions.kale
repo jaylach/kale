@@ -1,4 +1,6 @@
+import * from '../custom'
+
 {
 	foo,
-	kale: {{ _ | kale }}
+	kale: _.kale()
 }
