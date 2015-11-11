@@ -1,4 +1,5 @@
-%left '+'
+%left '+' '-' '*' '\' '==' '!=' '<=' '>='
+
 
 %start template
 
@@ -19,6 +20,15 @@ import
     { 
       $$ = new yy.ImportNode(@1.first_line, @1.first_column, $2, $4);
     }
+  | IMPORT '{' import_identifier_list '}' FROM STRING
+    {
+      var imports = [];
+      $3.forEach(function(ident) {
+        imports.push(new yy.ImportNode(@1.first_line, @1.first_column, ident, $6));
+      });
+
+      $$ = imports;
+    }
   ;
 
 import_list
@@ -37,6 +47,19 @@ import_list
 import_identifier
   : IDENTIFIER
   | '*'
+  ;
+
+import_identifier_list
+  : IDENTIFIER
+    {
+      if ( !Array.isArray($1) ) {
+        $$ = [ $1 ];
+      }
+    }
+  | import_identifier_list ',' IDENTIFIER
+    {
+      $$ = $1.concat($3);
+    }
   ;
 
 template_def
@@ -67,11 +90,11 @@ block_with_actions
   ;
 
 property
-  : IDENTIFIER ':' value
+  : IDENTIFIER ':' property_value
     {
       $$ = new yy.PropertyNode(@1.first_line, @1.first_column, $1, $3);
     }
-  | STRING ':' value
+  | STRING ':' property_value
     {
       $$ = new yy.PropertyNode(@1.first_line, @1.first_column, $1, $3);
     }
@@ -122,6 +145,11 @@ accessor
     }
   ;
 
+property_value
+  : value
+  | operation_list
+  ;
+
 value
   : binding
     {
@@ -135,10 +163,28 @@ value
     {
       $$ = new yy.ValueNode(@1.first_line, @1.first_column, parseInt($1));
     }
-  | value '+' value
-    {
-      $$ = new yy.OperatorNode(@1.first_line, @1.first_column, $1, $3, $2);
-    }
+  ;
+
+operation_list
+  : operation
+  | operation_list operator value
+    { $$ = new yy.OperatorNode(@1.first_line, @1.first_column, $1, $3, $2); }
+  ;
+
+operation
+  : value operator value
+    { $$ = new yy.OperatorNode(@1.first_line, @1.first_column, $1, $3, $2); }
+  ;
+
+operator
+  : '+'
+  | '-'
+  | '*'
+  | '\'
+  | '=='
+  | '>='
+  | '<='
+  | '!='
   ;
 
 binding 

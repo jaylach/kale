@@ -1,7 +1,7 @@
 {
   "name": "kale",
   "description": "A JSON view templating and transformation library for both sides of your RESTful APIs.",
-  "version": "0.7.1",
+  "version": "1.0.0",
   "stability": "beta",
   "main": "index.js",
   "keywords": [
@@ -39,8 +39,8 @@
     "test": "KALE_ENV=test mocha test",
     "coverage": "KALE_ENV=test istanbul cover -x bin/kale.js -x src/ -x lib/parser.js node_modules/mocha/bin/_mocha test",
     "coveralls": "KALE_ENV=test npm run coverage && cat ./coverage/lcov.info | coveralls",
-    "gen-parser": "./node_modules/.bin/jison src/grammar.jison src/tokens.jisonlex -o lib/parser.js -p lalr",
-    "prepublish": "npm run gen-parser"
+    "build": "./node_modules/.bin/jison src/grammar.jison src/tokens.jisonlex -o lib/parser.js -p lalr",
+    "prepublish": "npm run build"
   },
   "homepage": "https://github.com/jaylach/kale",
   "bugs": "https://github.com/jaylach/kale/issues",

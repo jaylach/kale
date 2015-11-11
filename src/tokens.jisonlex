@@ -1,6 +1,6 @@
 ident           ^([$A-Za-z_\x7f-\uffff][$\w\x7f-\uffff]*)([^\n\S]*:(?!:))?
 number          ^(\d*\.?\d+)(?:"e"[+-]?\d+)?
-glyph           [(){}\[\]|:,.+=*]
+glyph           [(){}\[\]|:,.+*]
 
 %%
 
@@ -14,6 +14,10 @@ glyph           [(){}\[\]|:,.+=*]
 %}
 
 /* Glyphs */
+'=='			{ return '=='; }
+'>='			{ return '>='; }
+'<='			{ return '<='; }
+'!='			{ return '!='; }
 {glyph}         { return yytext; }
 
 /* Keywords */
