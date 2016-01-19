@@ -234,6 +234,8 @@ import address from './address'
 var kale = require('kale');
 
 // Note that kale provides a single render function which accepts a single file.
+// If an option srcPath is provided kale will preserve directory structure in it 
+// while rendering the actual templates 
 kale.render('examples/example1.kale', {
   outPath: 'examples/templates',
   pretty: true
