@@ -1,0 +1,14 @@
+import address from './nested_template/address'
+
+{
+  id: userId,
+  userName,
+  fullName: firstName + lastName,
+  homePhone: phones.filter({ type: 'home' })
+                   .first()
+                   .pluck('number'),
+  mobilePhone: phones.filter({ type: 'mobile' })
+                     .first()
+                     .pluck('number'),
+  address: _.address()
+}

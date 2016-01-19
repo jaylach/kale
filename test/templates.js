@@ -15,7 +15,8 @@ var templates = fs.readdirSync('test/templates')
 
 var kaleOptions = { 
   pretty: true, 
-  outPath: 'test/tmp'
+  outPath: 'test/tmp', 
+  srcPath: 'test/templates'
 };
 
 // -----
@@ -33,10 +34,11 @@ describe('template tests', function() {
     }
   });
 
-  kale.render(__dirname + '/templates/*.kale', kaleOptions);
+  kale.render(__dirname + '/templates/**/*.kale', kaleOptions);
 
   // Run our test templates
   templates.forEach(function(test) {
+    console.log(test)
     var name = test.replace(/[-.]/g, ' ');
     var json = require('./templates/' + test + '.json');
 
